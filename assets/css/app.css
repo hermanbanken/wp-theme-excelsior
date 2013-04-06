@@ -84,103 +84,59 @@ body {
    Sidebar
    ========================================================================== */
 .sidebar.fixed.left {
-  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-weight: 200;
-  letter-spacing: 1px;
   position: fixed;
   top: 0;
   width: 180px;
-  background: #32394a;
   border-right: 1px solid #050709;
-  height: 100%;
+  bottom: 0;
   overflow: visible;
-  color: #c4ccda;
+  background: url("../img/box-shadow-15px.png") repeat;
+  background-position: -220px 0;
+  background-color: #464646;
 }
 .sidebar.fixed.left ul {
-  list-style: none;
-  margin: 0;
-}
-.sidebar.fixed.left ul .caret {
-  display: none;
-}
-.sidebar.fixed.left ul li a {
-  display: block;
-  color: #c4ccda;
-  text-shadow: 0 1px 1px #212631;
-  vertical-align: middle;
-  padding: 0 15px;
-  font-size: 16px;
-  text-decoration: none;
-  line-height: 35px;
-  height: 35px;
-  border-bottom: 1px solid #242a37;
-  border-top: 1px solid #3e4555;
-}
-.sidebar.fixed.left ul li.active > a,
-.sidebar.fixed.left ul li:hover > a {
-  background: #292f3d;
-  border-color: #292f3d;
-}
-.sidebar.fixed.left ul li .dropdown-menu {
-  left: 100%;
-  top: 0;
-  background-color: #32394a;
+  margin: 0 15px;
   padding: 0;
-  border: solid #333;
-  border-radius: 0;
-  border-width: 0 1px;
 }
-.sidebar.fixed.left ul li .dropdown-submenu > a::after {
-  margin-top: 12px;
+.sidebar.fixed.left ul li {
+  list-style: none;
 }
-.sidebar.fixed.left ul.search li {
-  height: 35px;
-  border-bottom-color: #111b33;
-  padding: 4px 0 0;
-  /* Gradient bg */
-
-  background: #424a5a;
-  /* Old browsers */
-
-  background: -moz-linear-gradient(top, #424a5a 0%, #242b39 100%);
-  /* FF3.6+ */
-
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #424a5a), color-stop(100%, #242b39));
-  /* Chrome,Safari4+ */
-
-  background: -webkit-linear-gradient(top, #424a5a 0%, #242b39 100%);
-  /* Chrome10+,Safari5.1+ */
-
-  background: -o-linear-gradient(top, #424a5a 0%, #242b39 100%);
-  /* Opera 11.10+ */
-
-  background: -ms-linear-gradient(top, #424a5a 0%, #242b39 100%);
-  /* IE10+ */
-
-  background: linear-gradient(to bottom, #424a5a 0%, #242b39 100%);
-  /* W3C */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#424a5a', endColorstr='#242b39', GradientType=0);
-  /* IE6-9 */
-
+.sidebar.fixed.left ul.menu {
+  margin-bottom: 60px;
+  text-align: right;
+  font-weight: bold;
+}
+.sidebar.fixed.left ul.menu li {
+  margin: 5px 0;
+}
+.sidebar.fixed.left ul.menu li a {
+  display: block;
+  line-height: 25px;
+  height: 25px;
+  color: #eee;
+  text-shadow: 0 1px 1px #333;
+  font-size: 18px;
+  -webkit-transition: padding .1s ease;
+  -moz-transition: padding .1s ease;
+  transition: padding .1s ease;
+}
+.sidebar.fixed.left ul.menu li a:hover {
+  text-decoration: none;
+  padding-right: 5px;
 }
 .sidebar.fixed.left form {
   position: relative;
 }
 .sidebar.fixed.left form i {
   position: absolute;
-  left: 20px;
+  left: 10px;
   top: 50%;
-  margin-top: -6px;
+  margin-top: -7px;
 }
 .sidebar.fixed.left form .search-query {
-  padding-left: 34px;
-  width: 120px;
-  margin: 0 5px;
-  background: #474f5e;
-  border-color: #222936;
-  color: #c4ccda;
-  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(255, 255, 255, 0.1);
+  display: block;
+  padding-left: 28px;
+  width: 106px;
 }
 .sidebar.fixed.left form .search-query[value=""] {
   color: #b3b3b3;

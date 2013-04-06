@@ -6,6 +6,14 @@
   <?php
     do_action('get_header');
   ?>
+	
+	<!--<div style="float: left; width: 100%; margin-right: -180px">
+	<div style="margin-right:180px;background:blue;min-height:100%">
+		<div style="float:left;width:180px;background:red;min-height:100%">blabla</div>
+			blabla
+		</div>
+	</div>
+	<div style="float:left;width:180px;background:red;min-height:100%">blabla</div>-->
 
   <div class="wrap" role="document">
 	
@@ -17,7 +25,9 @@
 			}
 			get_template_part('templates/header');
 		?>
-	  
+		
+		<div style="clear:float"></div>
+		
     <div class="content row-fluid">
       <div class="main <?php echo roots_main_class(); ?>" role="main">
         <?php include roots_template_path(); ?>
