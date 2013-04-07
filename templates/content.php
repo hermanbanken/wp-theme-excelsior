@@ -1,32 +1,40 @@
-<?php
-	$green = new Color(2,176,155);
-	$color = $green;//Color::random();
-	$isDark = $color->distance(Color::white()) > $color->distance(Color::black());
-		
-	$colorNeutralize = $color->to($isDark ? Color::white() : Color::black(), .3);
-	$colorText = $isDark ? Color::white() : Color::black();
-	$colorLink = $colorText->to($green, .3);
-	$colorInv = $color->invertLargest();
-?>
-<style>
-	body article.post-<?php the_ID(); ?> .inner a {
-		color: <?php echo $colorLink; ?>;
-	}
-</style>
-
+<?php require_once(ABSPATH."/wp-includes/class-oembed.php"); ?>
 <article <?php post_class(); ?>>
-  <div class="inner" style="background-color:<?php echo $color; ?>;color:<?php echo $colorText; ?>">
-	<header>
-	  <h2><a href="<?php the_permalink(); ?>" style="color:<?php echo $colorText; ?>"><?php the_title(); ?></a></h2>
-	</header>
-	<div class="entry-summary">
-	  <?php the_excerpt(); ?>
-	</div>
-	<div class='meta' style="background-color:<?php echo $colorNeutralize; ?>">
-		<?php get_template_part('templates/entry-meta'); ?>
-	</div>
-	<footer>
-	  <?php the_tags('<ul class="entry-tags"><li>','</li><li>','</li></ul>'); ?>
-	</footer>
+  <div class="inner">
+		<header>
+		  <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+		</header>
+		<?php //echo "<pre>".print_r(get_post_custom(),1)."</pre>"; ?>
+		<?php
+			$content = get_the_content();
+			$content = apply_filters('the_content', $content);
+			
+			if ( has_post_format( 'image' ) || has_post_format( 'gallery' ) ) {
+				the_post_thumbnail('medium');
+			}
+		?>
+		<?php if ( has_post_format( 'video' ) | has_post_format( 'audio' ) ): 
+			$urls = get_post_custom_values("_wp_format_media");
+			if($urls[0]){
+				$WPoEmbed = new WP_oEmbed();
+				$html = $WPoEmbed->get_html($urls[0]);
+				
+				// Remove sizes
+				$html = preg_replace("/width=\"(?<w>\d+)\"|height=\"(?<h>\d+)\"/", "", $html);
+				// If youtube, hide title
+				$html = preg_replace("~http://www.youtube.com/embed/(\w+)?([^\"\']*)~", "http://www.youtube.com/embed/$1?$2&amp;showinfo=0", $html);
+					
+				echo '<div class="media-container">'.$html.'</div>';
+			}
+			endif; ?>
+		<div class="entry-summary">
+		  <?php the_excerpt(); ?>
+		</div>
+		<div class='meta'>
+			<?php get_template_part('templates/entry-meta'); ?>
+		</div>
+		<footer>
+		  <?php the_tags('<ul class="entry-tags"><li>','</li><li>','</li></ul>'); ?>
+		</footer>
   </div>
 </article>

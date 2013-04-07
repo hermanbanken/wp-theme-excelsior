@@ -169,6 +169,18 @@ body.blog article .inner header h2 a,
 body.archive article .inner header h2 a {
   color: white;
 }
+body.blog article .inner .media-container,
+body.archive article .inner .media-container {
+  overflow: hidden;
+  margin: 0 -15px;
+}
+body.blog article .inner .media-container iframe,
+body.archive article .inner .media-container iframe,
+body.blog article .inner .media-container embed,
+body.archive article .inner .media-container embed {
+  width: 100%;
+  min-height: 100px;
+}
 body.blog article .inner .meta,
 body.archive article .inner .meta {
   display: block;
