@@ -1,23 +1,20 @@
-<nav id="mainNav" class="sidebar fixed left">
-			
-	<a href="<?php echo home_url(); ?>" class="logo_sm" style="opacity: 0;"><?php bloginfo('name'); ?></a>
-	
-	<ul class='search menu'>
-		<li>
-			<form class="form-search">
-				<i class="icon-search"></i>
-	  		<input type="text" name="s" class="search-query" placeholder="Zoeken">
-			</form>
-		</li>
-	</ul>
-  <?php
-    if (has_nav_menu('primary_navigation')) :
-      wp_nav_menu(array(
-				'theme_location' => 'primary_navigation', 
-				'menu_class' => 'menu', 
-				'menu_id' => 'menu-primary-navigation'
-			));
-    endif;
-  ?>
+<header role="banner" class="banner mainHeader">
+	<h1><img alt="<?php bloginfo('name'); ?>" src="/assets/img/name.png" /></h1>
+  <center>
+		<img src="/assets/img/logo.png" />
+	</center>
+	<p>Opgericht in 1903 en sindsdien een gezellige club mensen met een passie voor muziek.</p>
+</header>
 
-</nav>
+<?php
+  if (has_nav_menu('primary_navigation')) :
+    wp_nav_menu(array(
+			'theme_location' => 'primary_navigation', 
+			'menu_class' => 'menu', 
+			'menu_id' => 'menu-primary-navigation',
+			'depth' => 2,
+			'before'     => '<p>',
+			'after'      => '</p>',
+		));
+  endif;
+?>

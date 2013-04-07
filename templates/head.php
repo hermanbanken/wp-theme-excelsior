@@ -10,5 +10,6 @@
 
   <?php wp_head(); ?>
 
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400italic,400,800,700|Oswald:400,700,300' rel='stylesheet' type='text/css'>
   <link rel="alternate" type="application/rss+xml" title="<?php echo get_bloginfo('name'); ?> Feed" href="<?php echo home_url(); ?>/feed/">
 </head>

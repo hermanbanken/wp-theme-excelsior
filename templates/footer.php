@@ -1,8 +1,8 @@
-<footer class="content-info" role="contentinfo">
+<!--<footer class="content-info" id="bottomFooter" role="contentinfo">
   <div class="row-fluid">
     <?php dynamic_sidebar('sidebar-footer'); ?>
     <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?></p>
   </div>
-</footer>
+</footer>-->
 
 <?php wp_footer(); ?>

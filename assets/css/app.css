@@ -1,252 +1,377 @@
+/* Green */
+/* Darkest blue */
+/* Blue */
+/* Lightest blue */
 /* ==========================================================================
    Base
    ========================================================================== */
+a {
+  color: #02b09b;
+}
+a:hover,
+a:focus {
+  text-decoration: none;
+}
 body {
-  background: url('../img/excelsior-bg.jpg') repeat;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: 'Arial', sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  background: #eee;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+#menu,
+section.quick-bar {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  font-size: 36px;
+  font-weight: 300;
+  text-transform: uppercase;
+  line-height: 36px;
+}
+input[type=search],
+input[type=text],
+input[type=password],
+input[type=submit],
+.btn {
+  border: 1px solid #e7e7e7;
+  background: #f6f6f6;
+  font-size: 11px;
+  border-radius: 0;
+  box-shadow: none;
+  text-shadow: none;
+  font-style: normal;
+  color: #e7e7e7;
+  line-height: 15px;
+  height: 15px;
+  padding: 4px 8px;
+}
+.btn {
+  border: 1px solid #48648e;
+  background: #8c9bbc;
+  color: white;
+}
+/* ==========================================================================
+   Structure
+   ========================================================================== */
+.wrap {
+  overflow: hidden;
+  margin-top: 10px;
+}
+#menu {
+  float: left;
+  width: 220px;
+  padding: 0 30px;
+  margin: 0 10px;
+  min-height: 300px;
+  background: #48648e;
+}
+#content {
+  min-height: 400px;
+  margin: 0 10px;
+  margin-left: 310px;
+}
+#content section.quick-bar {
+  line-height: 30px;
+  padding: 10px 0;
+  font-style: italic;
+  font-size: 12px;
+}
+#content section.quick-bar p {
+  margin: 0;
+}
+#content section.quick-bar .spacer {
+  border-left: 1px dotted gray;
+  width: 10px;
+  margin: -10px 25px;
+  height: 30px;
+  display: inline-block;
+}
+#content section.quick-bar input {
+  margin-bottom: 0;
+  width: auto;
+}
+#content section.quick-bar .pull-right {
+  margin: 3px 0;
+}
+body.page article,
+body.single article {
+  background: white;
+  padding: 0 25px 10px;
+  margin-bottom: 20px;
+}
+body.page article header,
+body.single article header {
+  background: #02b09b;
+  color: white;
+  padding: 32px 50px;
+  margin: 0 -25px 20px;
+}
+body.page article header h1,
+body.single article header h1 {
+  margin: 0;
+}
+body.page article header + p,
+body.single article header + p {
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-column-count: 1;
+  -moz-column-count: 1;
+  -ie-column-count: 1;
+  column-count: 1;
+}
+body.page article p,
+body.single article p {
+  margin: 0 25px 25px;
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  -ie-column-count: 2;
+  column-count: 2;
+}
+body.blog section.articles,
+body.archive section.articles {
+  margin: 0 -10px;
+}
+body.blog article,
+body.archive article {
+  float: left;
+  width: 49.99%;
+}
+body.blog article .inner,
+body.archive article .inner {
+  margin: 0 10px 20px 10px;
+  padding: 15px;
+  color: white;
+  background: #02b09b;
+}
+body.blog article .inner header,
+body.archive article .inner header {
+  margin-bottom: 15px;
+}
+body.blog article .inner header h2,
+body.archive article .inner header h2 {
+  font-family: 'Oswald', 'Helvetica Neue', sans-serif;
+  font-size: 25px;
   font-weight: 300;
   line-height: 24px;
-  color: #393939;
-  text-shadow: 0px 1px 0px #fff;
-}
-.wrap {
-  padding: 0 30px 30px 210px;
-  max-width: 1000px;
-}
-/* =============================================================================
-   Header
-   ========================================================================== */
-.banner {
-  position: relative;
-}
-.banner .logo_lrg {
-  font-size: 3em;
-  font-weight: bold;
-  color: black;
-  line-height: 80px;
-}
-.mobileNav_btn {
-  display: none;
-  padding: 4px 6px;
-  background: #ccc;
-  border-radius: 4px;
-  border: 1px solid #bbb;
-  position: absolute;
-  right: 0;
-  top: 0;
-  margin-top: 25px;
-  line-height: 18px;
-}
-/* ==========================================================================
-   Content
-   ========================================================================== */
-.news-excerpts header {
-  border: 1px solid black;
-  border-width: 1px 0 1px 0;
-  margin-bottom: 10px;
-}
-.news-excerpts header h3 {
-  margin-bottom: 0;
-  margin-top: 10px;
-  line-height: 30px;
-}
-.news-excerpts header p {
   text-transform: uppercase;
-  margin-bottom: 10px;
 }
-.news-latest ul {
-  padding: 0;
-  margin: 0 0 10px 0;
+body.blog article .inner header h2 a,
+body.archive article .inner header h2 a {
+  color: white;
 }
-.news-latest ul li {
-  list-style: none;
+body.blog article .inner .meta,
+body.archive article .inner .meta {
   display: block;
-  border-bottom: 1px solid black;
-  padding: 4px 0;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 15px;
+  margin: 0 -15px -15px;
+  font-weight: 200;
+  font-size: .9em;
+  line-height: 14px;
 }
-.news-latest ul li:first-child {
-  border-top: 1px solid black;
+body.blog article .inner .meta p.byline,
+body.archive article .inner .meta p.byline {
+  margin: 0;
+  font-weight: 600;
 }
-.ellipsis {
-  white-space: nowrap;
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.readMore {
-  background: left center no-repeat url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAM0lEQVQY02NgIBo4OHCgYCamKhQ+VkUMDK9RFOJUhKwQDEAcmAQ6hsgRaxJZbsLqOwIAAMogIhW3qxUxAAAAAElFTkSuQmCC");
-  padding-left: 15px;
+#bottomFooter {
+  background: white;
+  padding: 20px 30px;
+  margin-top: 10px;
 }
 /* ==========================================================================
-   Primary Content
+   Menu
    ========================================================================== */
-/* ==========================================================================
-   Sidebar
-   ========================================================================== */
-.sidebar.fixed.left {
-  position: fixed;
-  top: 0;
-  width: 180px;
-  border-right: 1px solid #050709;
-  bottom: 0;
-  overflow: visible;
-  background: url("../img/box-shadow-15px.png") repeat;
-  background-position: -220px 0;
-  background-color: #464646;
+#menu {
+  color: white;
+  padding-bottom: 20px;
 }
-.sidebar.fixed.left ul {
-  margin: 0 15px;
+#menu header h1 {
+  margin: 12px 0 2px 0;
+}
+#menu header p {
+  font-family: "Myriad Pro";
+  font-weight: 300;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 16px;
+  border: solid rgba(255, 255, 255, 0.3);
+  border-width: 1px 0;
+  padding: 10px 0;
+  margin: 10px 0;
+}
+#menu ul.menu {
+  margin-top: 20px;
+  margin-left: -30px;
+}
+#menu ul.menu > li > p a {
+  font-family: "Helvetica";
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 12px;
+}
+#menu ul {
+  margin: 0;
   padding: 0;
+  /* Arrow in front of text */
+
+  /* Arrow on white background */
+
 }
-.sidebar.fixed.left ul li {
+#menu ul li {
   list-style: none;
+  margin: 0;
+  padding-left: 30px;
+  margin-top: -1px;
+  /* When active */
+
 }
-.sidebar.fixed.left ul.menu {
-  margin-bottom: 60px;
-  text-align: right;
-  font-weight: bold;
-}
-.sidebar.fixed.left ul.menu li {
-  margin: 5px 0;
-}
-.sidebar.fixed.left ul.menu li a {
-  display: block;
-  line-height: 25px;
-  height: 25px;
-  color: #eee;
-  text-shadow: 0 1px 1px #333;
-  font-size: 18px;
-  -webkit-transition: padding .1s ease;
-  -moz-transition: padding .1s ease;
-  transition: padding .1s ease;
-}
-.sidebar.fixed.left ul.menu li a:hover {
-  text-decoration: none;
-  padding-right: 5px;
-}
-.sidebar.fixed.left form {
+#menu ul li p {
+  margin: 0;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
+  height: 31px;
+  line-height: 32px;
   position: relative;
 }
-.sidebar.fixed.left form i {
+#menu ul li p a {
+  color: white;
+  display: block;
+  margin-left: -30px;
+  padding-left: 30px;
+  position: relative;
+}
+#menu ul li p a:hover,
+#menu ul li.current-menu-item > p > a {
+  background: url(../img/sprites.png) no-repeat rgba(255, 255, 255, 0.3);
+  background-position: -135px -32px;
+  margin-right: -15px;
+  text-decoration: none;
+}
+#menu ul li.current-menu-item > p > a {
+  background-color: white;
+  background-position: -135px 0;
+  color: #484848;
+}
+#menu ul li .sub-menu {
+  margin-left: -30px;
+}
+#menu ul li .sub-menu li a {
+  padding-left: 45px;
+}
+#menu ul > li > ul > li p::before {
+  background: url(../img/sprites.png) no-repeat;
+  background-position: -30px -69px;
+  width: 20px;
+  height: 30px;
   position: absolute;
-  left: 10px;
-  top: 50%;
-  margin-top: -7px;
-}
-.sidebar.fixed.left form .search-query {
+  top: 1px;
+  left: 0;
   display: block;
-  padding-left: 28px;
-  width: 106px;
+  content: "";
+  z-index: 1;
 }
-.sidebar.fixed.left form .search-query[value=""] {
-  color: #b3b3b3;
+#menu ul > li > ul > li.current-menu-item p::before {
+  background-position: 0 -69px;
 }
-.admin-bar .sidebar.fixed.left {
-  top: 28px;
-  bottom: 0;
-  height: auto;
+.sub-menu {
+  display: none;
 }
-/* ==========================================================================
-   Posts
-   ========================================================================== */
-/* ==========================================================================
-   Footer
-   ========================================================================== */
-.content-info .row-fluid {
-  padding: 0 30px 30px 210px;
-}
-/* ==========================================================================
-   WordPress Generated Classes
-   See: http://codex.wordpress.org/CSS#WordPress_Generated_Classes
-   ========================================================================== */
-.aligncenter {
+.current-menu-ancestor > .sub-menu,
+.current-menu-item > .sub-menu {
   display: block;
-  margin: 0 auto;
-}
-.alignleft {
-  float: left;
-}
-.alignright {
-  float: right;
-}
-figure.alignnone {
-  margin-left: 0;
-  margin-right: 0;
 }
 /* ==========================================================================
-   Media Queries
+   Media queries
    ========================================================================== */
-@media only screen and (max-width: 1023px) {
-  body {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .wrap,
-  .content-info .row-fluid {
-    min-width: 95%;
-    max-width: 95%;
-    width: 95%;
-    padding: 0 2.5% 30px 2.5%;
-    margin: 0;
-  }
-  .banner {
-    padding-bottom: 40px;
-  }
-  .sidebar.fixed.left {
-    position: absolute;
-    top: 80px;
-    background: none;
-    border: none;
-    min-width: 95%;
-    max-width: 95%;
-    width: 95%;
-    padding: 0 2.5%;
-    height: 42px;
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+  .wrap {
     overflow: visible;
   }
-  .sidebar.fixed.left .search.menu {
-    display: none;
+  #menu {
+    float: none;
+    width: auto;
+    min-height: auto;
+    margin: -12px -20px;
+    padding-top: 10px;
   }
-  .sidebar.fixed.left ul li {
-    display: inline-block;
+  #menu header {
+    position: relative;
+    padding-left: 100px;
   }
-  .sidebar.fixed.left ul li a {
-    border: none;
-    background: none;
-    border-radius: 5px;
-    color: #000;
-    text-shadow: inherit;
+  #menu header h1 {
+    margin: 0;
   }
-  .sidebar.fixed.left ul li.active a,
-  .sidebar.fixed.left ul li:hover a {
-    background: #ddd;
+  #menu header center {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -32px;
+    width: 90px;
   }
-  .admin-bar .sidebar.fixed.left {
-    top: 108px;
-    height: 42px;
+  #menu div ul li.current-menu-item > p > a,
+  #menu div ul li p:hover > a {
+    background-image: none;
+    margin-right: -30px;
   }
-  .sidebar.fixed.left .logo_sm {
-    display: none;
+  section.quick-bar {
+    margin: 20px 0 0;
+  }
+  #content {
+    margin-left: inherit;
+    margin-right: inherit;
   }
 }
-@media only screen and (max-width: 544px) {
-  .banner {
-    padding-right: 60px;
-  }
-  .mobileNav_btn {
-    display: block;
-  }
-  .sidebar.fixed.left {
-    position: relative;
-    top: 0;
-    min-width: 100%;
-    max-width: 100%;
+@media (max-width: 480px) {
+  body.blog article,
+  body.archive article {
     width: 100%;
-    padding: 0;
-    text-align: center;
-    height: auto;
   }
-  .admin-bar .sidebar.fixed.left {
-    top: 0;
+}
+@media (min-width: 979px) {
+  body.blog article,
+  body.archive article {
+    width: 33%;
   }
+}
+@media (min-width: 1200px) {
+  body.blog article,
+  body.archive article {
+    width: 24.9%;
+  }
+}
+/* ==========================================================================
+   Masonry
+   ========================================================================== */
+.masonry,
+.masonry .masonry-brick {
+  -webkit-transition-duration: 0.7s;
+  -moz-transition-duration: 0.7s;
+  -ms-transition-duration: 0.7s;
+  -o-transition-duration: 0.7s;
+  transition-duration: 0.7s;
+}
+.masonry {
+  -webkit-transition-property: height, width;
+  -moz-transition-property: height, width;
+  -ms-transition-property: height, width;
+  -o-transition-property: height, width;
+  transition-property: height, width;
+}
+.masonry .masonry-brick {
+  -webkit-transition-property: left, right, top;
+  -moz-transition-property: left, right, top;
+  -ms-transition-property: left, right, top;
+  -o-transition-property: left, right, top;
+  transition-property: left, right, top;
 }

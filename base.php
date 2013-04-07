@@ -2,47 +2,28 @@
 <body <?php body_class(); ?>>
 
   <!--[if lt IE 7]><div class="alert">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</div><![endif]-->
-
-  <?php
-    do_action('get_header');
-  ?>
-	
-	<!--<div style="float: left; width: 100%; margin-right: -180px">
-	<div style="margin-right:180px;background:blue;min-height:100%">
-		<div style="float:left;width:180px;background:red;min-height:100%">blabla</div>
-			blabla
+	<div class="wrap">
+		
+		<div id="menu" style="min-height: 300px;">
+			<?php get_template_part('templates/menu'); ?>
 		</div>
-	</div>
-	<div style="float:left;width:180px;background:red;min-height:100%">blabla</div>-->
-
-  <div class="wrap" role="document">
 	
-		<?php
-			do_action('get_header');
-			// Use Bootstrap's navbar if enabled in config.php
-			if (current_theme_supports('bootstrap-top-navbar')) {
-			  get_template_part('templates/header-top-navbar');
-			}
-			get_template_part('templates/header');
-		?>
+		<div id="content" style="min-height: 300px;">
+	  
+			<section class="quick-bar">
+				<?php get_template_part('templates/quickbar'); ?>
+			</section>
 		
-		<div style="clear:float"></div>
+			<section class="articles">
+	      <?php include roots_template_path(); ?>
+				<?php //include roots_sidebar_path(); ?>
+			</section>
+
+			<?php get_template_part('templates/footer'); ?>
+				
+		</div>
 		
-    <div class="content row-fluid">
-      <div class="main <?php echo roots_main_class(); ?>" role="main">
-        <?php include roots_template_path(); ?>
-      </div><!-- /.main -->
-      <?php if (roots_display_sidebar()) : ?>
-      <aside class="sidebar <?php echo roots_sidebar_class(); ?>" role="complementary">
-        <?php include roots_sidebar_path(); ?>
-      </aside><!-- /.sidebar -->
-      <?php endif; ?>
-    </div><!-- /.content -->
-  </div><!-- /.wrap -->
+	</div><!-- End of .wrap -->
 	
-  <?php get_template_part('templates/menu'); ?>
-
-  <?php get_template_part('templates/footer'); ?>
-
 </body>
 </html>
