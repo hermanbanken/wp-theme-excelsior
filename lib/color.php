@@ -80,6 +80,62 @@ class Color {
 		}
 		return $color;
 	}
+	
+	static function fromHex($hex){
+		if(substr($hex, 0, 1) == "#")
+			$hex = substr($hex, 1);
+		return new Color(hexdec(substr($hex, 0, 2)),hexdec(substr($hex, 2, 2)),hexdec(substr($hex, 4, 2)));
+	}
+}
+
+add_action( 'add_meta_boxes', 'roots_add_color_box');
+add_action( 'save_post', 'roots_color_box_savedata' );
+add_action( 'admin_enqueue_scripts', 'roots_enqueue_color_picker' );
+
+/* Enqueue color picker */
+function roots_enqueue_color_picker( $hook_suffix ) {
+		wp_enqueue_style( 'wp-color-picker' );
+}
+
+/* Adds a box to the main column on the Post edit screen */
+function roots_add_color_box() {
+    $screens = array( 'post' );
+    foreach ($screens as $screen) {
+        add_meta_box(
+            'roots_colorbox',
+            __( 'Colorpicker', 'roots' ),
+            'roots_color_box_html',
+            $screen,
+						'side'
+        );
+    }
+}
+
+/* Prints the box content */
+function roots_color_box_html() {
+	global $post;
+	wp_nonce_field( plugin_basename( __FILE__ ), 'roots_noncename' );
+	$value = get_post_meta( $post->ID, '_roots_bg_color', true );
+	
+	echo '<label for="roots_bg_color">';
+	_e("Selecteer een achtergrondkleur voor dit bericht", 'roots' );
+	echo '</label> ';
+	echo '<input type="text" id="roots_bg_color" name="roots_bg_color" value="'.esc_attr($value).'" data-default-color="#02b09b" size="7" />';
 }
 	
+/* When the post is saved, saves our custom data */
+function roots_color_box_savedata( $post_id ) {
+	// First we need to check if the current user is authorised to do this action. 
+  if ( ! current_user_can( 'edit_post', $post_id ) )
+  		return;
+	
+  // Secondly we need to check if the user intended to change this value.
+  if ( ! isset( $_POST['roots_noncename'] ) || ! wp_verify_nonce( $_POST['roots_noncename'], plugin_basename( __FILE__ ) ) )
+      return;
+	
+	// Thirdly we can save the value to the database
+  $color = sanitize_text_field( $_POST['roots_bg_color'] );
+	
+  $result = update_post_meta($post_id, '_roots_bg_color', $color);
+}
 ?>

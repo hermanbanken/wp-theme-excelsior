@@ -45,7 +45,12 @@ function roots_scripts() {
   wp_enqueue_script('roots_plugins');
   wp_enqueue_script('roots_main');
 }
+function roots_admin_scripts() {
+	wp_enqueue_style( 'wp-color-picker' );
+  wp_enqueue_script('roots_admin', get_template_directory_uri() . '/assets/js/admin.js', array( 'wp-color-picker' ), null, true);
+}
 add_action('wp_enqueue_scripts', 'roots_scripts', 100);
+add_action('admin_enqueue_scripts', 'roots_admin_scripts' );
 
 // http://wordpress.stackexchange.com/a/12450
 function roots_jquery_local_fallback($src, $handle) {

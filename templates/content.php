@@ -10,7 +10,9 @@
 			$content = apply_filters('the_content', $content);
 			
 			if ( has_post_format( 'image' ) || has_post_format( 'gallery' ) ) {
+				echo '<div class="media-container">';
 				the_post_thumbnail('medium');
+				echo '</div>';
 			}
 		?>
 		<?php if ( has_post_format( 'video' ) | has_post_format( 'audio' ) ): 

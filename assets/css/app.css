@@ -172,14 +172,17 @@ body.archive article .inner header h2 a {
 body.blog article .inner .media-container,
 body.archive article .inner .media-container {
   overflow: hidden;
-  margin: 0 -15px;
+  margin: 0 -15px 10px;
 }
 body.blog article .inner .media-container iframe,
 body.archive article .inner .media-container iframe,
 body.blog article .inner .media-container embed,
-body.archive article .inner .media-container embed {
+body.archive article .inner .media-container embed,
+body.blog article .inner .media-container img,
+body.archive article .inner .media-container img {
   width: 100%;
   min-height: 100px;
+  display: block;
 }
 body.blog article .inner .meta,
 body.archive article .inner .meta {
