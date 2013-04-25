@@ -12,7 +12,7 @@ $(function(){
 			  itemSelector: 'article',
 				// set columnWidth a fraction of the container width
 				columnWidth: function( containerWidth ) {
-					return $("article").width();
+					return $("article:not(.double)").width();
 			
 					if ( containerWidth > 1000 )
 						return containerWidth / 5;
@@ -26,4 +26,11 @@ $(function(){
 			});
 		});
 	}
+});
+
+// Change height of iFrames to always be 16:9
+$(window).on("resize load", function(e){
+	$(".media-container iframe").each(function(){
+		$(this).height(9 * $(this).width() / 16);
+	});
 });

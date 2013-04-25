@@ -1,0 +1,1 @@
+<?php echo roots_get_featured_media(); ?>
