@@ -1,4 +1,22 @@
-### HEAD
+### 6.4.0: May 1st, 2013
+* Fix Theme Activation page issues
+* Fix issues with root relative URLs and rewrites on non-standard setups
+* Make sure rewrites are added to .htaccess immediately after activation
+* Move HTML5 Boilerplate's .htaccess to a [plugin](https://github.com/retlehs/wp-h5bp-htaccess)
+* Rename page-custom.php to template-custom.php
+* Don't warn about unwritable htaccess if that option is disabled
+* Add missing collapse class for top navbar
+* Add comment template
+* Update is_dropdown evaluation in nav walker
+* Re-organize archives template
+* Add missing comment ID
+* hNews consistency with entry-title class
+* Add `wp_title()` filter
+* Fix missing closing div in comments
+* Fix for navbar dropdowns
+* Add option for using jQuery on Google CDN
+* Correct logic in `roots_enable_root_relative_urls`
+* Add Greek translation, update Brazilian Portuguese translation
 * Update to Bootstrap 2.3.1
 * Simplify alerts
 * Remove disabled post nav links
