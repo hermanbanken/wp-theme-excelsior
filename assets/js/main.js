@@ -4,7 +4,7 @@
 
 // jQuery Masonry
 $(window).on("load", function(){
-	$container = $('.blog .articles, .archive .articles');
+	$container = $('.search .articles, .blog .articles, .archive .articles');
 	if ( $container.find("article").size() > 1 )
 	{
 		$container.imagesLoaded(function(){
@@ -26,6 +26,28 @@ $(window).on("load", function(){
 			});
 		});
 	}
+	
+	$container.infinitescroll({
+    navSelector  : '.post-nav',    // selector for the paged navigation 
+    nextSelector : '.post-nav .previous a',  // selector for the NEXT link (to page 2)
+    itemSelector : '.box',     // selector for all items you'll retrieve
+    loading: {
+        finishedMsg: 'No more pages to load.',
+        img: 'http://i.imgur.com/6RMhx.gif'
+      }
+    },
+    // trigger Masonry as a callback
+    function( newElements ) {
+      // hide new items while they are loading
+      var $newElems = $( newElements ).css({ opacity: 0 });
+      // ensure that images load before adding to masonry layout
+      $newElems.imagesLoaded(function(){
+        // show elems now they're ready
+        $newElems.animate({ opacity: 1 });
+        $container.masonry( 'appended', $newElems, true ); 
+      });
+    }
+  );
 });
 
 // Change height of iFrames to always be 16:9
