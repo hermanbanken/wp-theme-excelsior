@@ -1,8 +1,10 @@
 <header role="banner" class="banner mainHeader">
-	<h1><img alt="<?php bloginfo('name'); ?>" src="/assets/img/name.png" /></h1>
-  <center>
-		<img src="/assets/img/logo.png" />
-	</center>
+	<a href="<?php echo home_url(); ?>/?ref=logo">
+		<h1><img alt="<?php bloginfo('name'); ?>" src="/assets/img/name.png" /></h1>
+	  <center>
+			<img src="/assets/img/logo.png" />
+		</center>
+	</a>
 	<p>Opgericht in 1903 en sindsdien een gezellige club mensen met een passie voor muziek.</p>
 </header>
 

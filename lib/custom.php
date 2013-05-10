@@ -7,18 +7,67 @@ $regexUrl = "/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:
 function roots_get_featured_media(){
 	
 	$content = get_the_content();
-	$content = apply_filters('the_content', $content);
+	global $wp_filter; global $post;
 	
+	$classes = array("media-container");
+	$content = apply_filters('the_content', $content);	
 	$embed = false;
+	
 	switch( get_post_format() )
 	{
 		case 'video':
 		case 'audio':
 			// Directly defined video or audio, also find urls in post
-			$urls = get_post_custom_values("_wp_format_media") + roots_get_urls($content);
+			$urls = array_unique(array_filter(array_merge(get_post_custom_values("_wp_format_media"), roots_get_urls($content))));
 			if(($oembed = roots_get_first_embed($urls)) && ($embed = $oembed))
 				break;
-		
+			
+			if(count($urls) > 0 && get_post_format() == 'audio'){
+				array_push($classes, "playlist");
+				// Store playlist for filter
+				$playlist = array();
+				// Check all urls
+				foreach($urls as $url){
+					$song = array("html" => "", "data" => &$data);
+					
+					$filetype = wp_check_filetype($url);
+					// No audio: continue;
+					if(!in_array($filetype['ext'], array("wav", "wave", "mp3", "ogg")))
+						continue;
+					
+					// Try to find id3 data
+					$data = array(
+						"src" => $url, "artist" => "", 
+						"title" => preg_replace(array("/[^a-zA-Z0-9\.]+/", "/\.[a-z0-9]{3,4}$/"), array(" ", ""), basename($url)), 
+						"length" => "", "length_formatted" => "", 
+						"album" => "", "track_number" => 1, "genre" => "", "year" => ""
+					);
+					if($id = roots_get_attachment_id_by_url($url)){
+						$meta = get_post_custom($id);
+						
+						foreach($data as $key => &$val){
+							if(isset($meta["id3.".$key]))
+								$val = $meta["id3.".$key][0];
+						}
+						$data["id"] = $id;
+					}
+					
+					$song['html'] .= "<audio ";
+					foreach($data as $key => $val) 
+						$song['html'] .= "data-".htmlentities($key)."=\"".htmlentities($val)."\"";
+					$song['html'] .= " controls><source src=\"$url\" type=\"$filetype[type]\" /></audio>";
+
+					// Store in playlist
+					$playlist[] = $song;
+					unset($data);
+				}
+				
+				$playlist = apply_filters('playlist_audio', $playlist);
+				$embed = "<ul class='song-list'>";
+				foreach($playlist as $song) $embed .= "<li class='song'>".$song['html']."</li>";
+				$embed.= "</ul>";
+				break;
+			}
 		case 'gallery':
 			// Display a gallery you can slide and stuff
 		
@@ -53,7 +102,85 @@ function roots_get_featured_media(){
 			break;
 	}
 
-	return '<div class="media-container">'.$embed.'</div>';
+	return '<div class="'.implode(" ",$classes).'" data-name="'.get_the_title().'">'.$embed.'</div>';
+}
+
+/**
+	* roots_get_all_attachements
+	*	Finds attachments in:
+	* - wp_format_media (custom post textfield)
+	* - the_content (as url)
+ 	* - all attached children
+	*/
+function roots_get_all_attachements(){
+	$attachments = array();
+	$uploads = wp_upload_dir();
+	
+	// Custom post + text urls
+	$custompostvalues = array_filter(get_post_custom_values("_wp_format_media"));
+	$urls = array_merge($custompostvalues, roots_get_urls(get_the_content()));
+	
+	// Load all old-school attachments
+	$args = array(
+		'post_parent' => get_the_ID(),
+		'post_type' => 'attachment',
+	);
+	$children =& get_children( $args );
+	foreach($children as $child){
+		if($index = array_search(wp_get_attachment_url($child->ID), $urls) || $index = array_search($child->guid, $urls)){
+			if(in_array($urls[$index], $custompostvalues))
+				$child->featured = true;
+			unset($urls[$index]);
+		}
+		$attachments[] = $child;
+	}
+
+	// Add all urls
+	foreach($urls as $url){
+		$filetype = wp_check_filetype($url);
+		// If we can't find the filetype, it's probably not a file url
+		if(empty($filetype['type'])) continue;
+		
+		// Try to find a local attachment
+		if($id = roots_get_attachment_id_by_url($url)){
+			$post = get_post($id);
+			if(in_array($url, $custompostvalues))
+				$post->featured = true;
+			$attachments[] = $post;
+			continue;
+		}
+		
+		// Remote attachment
+		$new = array(
+			"guid" => $url,
+			"post_type" => "attachment",
+			"post_mime_type" => $filetype['type']
+		);
+		if(in_array($url, $custompostvalues))
+			$new['featured'] = true;
+		
+		$attachments[] = (object) $new;
+	}
+	
+	// Remove duplicates
+	$encountered = array();
+	foreach($attachments as $k=>$a){
+		if(in_array($a->guid, $encountered)) unset($attachments[$k]);
+		$encountered[] = $a->guid;
+	}
+	return $attachments;
+}
+
+// Lookup attachment by url
+function roots_get_attachment_id_by_url($url){
+	global $wpdb;
+	$uploads = wp_upload_dir();
+	
+	$query = $wpdb->prepare("SELECT ID FROM {$wpdb->posts} WHERE guid LIKE '%s'", "%".str_replace($uploads['baseurl'], "", $url));
+	if($id = $wpdb->get_var($query)){
+		return $id;
+	}
+	return false;
 }
 
 // Scan $content for urls
@@ -78,7 +205,7 @@ function roots_strip_embed($html){
 	// Remove sizes
 	$html = preg_replace("/width=\"(?<w>\d+)\"|height=\"(?<h>\d+)\"/", "", $html);
 	// If youtube, hide title
-	$html = preg_replace("~http://www.youtube.com/embed/(\w+)?([^\"\']*)~", "http://www.youtube.com/embed/$1?$2&amp;showinfo=0", $html);
+	$html = preg_replace("~http://www.youtube.com/embed/(\w+)?([^\"\']*)~", "http://www.youtube.com/embed/$1?$2&amp;showinfo=0&amp;origin=".urlencode(home_url()), $html);
 
 	return $html;
 }

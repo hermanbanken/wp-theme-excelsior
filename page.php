@@ -1,4 +1,6 @@
 <article>
-	<?php get_template_part('templates/page', 'header'); ?>
-	<?php get_template_part('templates/content', 'page'); ?>
+	<div class="inner">
+		<?php get_template_part('templates/page', 'header'); ?>
+		<?php get_template_part('templates/content', 'page'); ?>
+	</div>
 </article>

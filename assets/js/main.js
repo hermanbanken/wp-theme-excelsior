@@ -3,7 +3,7 @@
 */
 
 // jQuery Masonry
-$(function(){
+$(window).on("load", function(){
 	$container = $('.blog .articles, .archive .articles');
 	if ( $container.find("article").size() > 1 )
 	{

@@ -45,7 +45,6 @@ function roots_scripts() {
   wp_enqueue_script('modernizr');
   wp_enqueue_script('roots_plugins');
   wp_enqueue_script('roots_main');
-	wp_enqueue_script('audio.js');
 }
 function roots_admin_scripts() {
 	wp_enqueue_style( 'wp-color-picker' );

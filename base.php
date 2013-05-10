@@ -4,8 +4,12 @@
   <!--[if lt IE 7]><div class="alert">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</div><![endif]-->
 	<div class="wrap">
 		
-		<div id="menu" style="min-height: 300px;">
-			<?php get_template_part('templates/menu'); ?>
+		<div id="columnleft">
+			<div id="menu">
+				<?php get_template_part('templates/menu'); ?>
+			</div>
+			
+			<?php dynamic_sidebar('sidebar-menu'); ?>
 		</div>
 	
 		<div id="content" style="min-height: 300px;">
@@ -19,10 +23,9 @@
 				<?php //include roots_sidebar_path(); ?>
 			</section>
 
-			<?php get_template_part('templates/footer'); ?>
 				
 		</div>
-		
+		<?php get_template_part('templates/footer'); ?>		
 	</div><!-- End of .wrap -->
 	
 </body>

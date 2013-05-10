@@ -13,7 +13,7 @@ function roots_widgets_init() {
     'after_title'   => '</h3>',
   ));
 
-  register_sidebar(array(
+  /*register_sidebar(array(
     'name'          => __('Footer', 'roots'),
     'id'            => 'sidebar-footer',
     'before_widget' => '<section class="widget %1$s %2$s"><div class="widget-inner">',
@@ -29,11 +29,11 @@ function roots_widgets_init() {
     'after_widget'  => '</div></section>',
     'before_title'  => '<h3>',
     'after_title'   => '</h3>',
-  ));
+  ));*/
 	
   register_sidebar(array(
-    'name'          => __('Audiobar', 'roots'),
-    'id'            => 'audio-widgets',
+    'name'          => __('Below menu', 'roots'),
+    'id'            => 'sidebar-menu',
     'before_widget' => '<section class="widget %1$s %2$s"><div class="widget-inner">',
     'after_widget'  => '</div></section>',
     'before_title'  => '<h3>',
@@ -41,14 +41,14 @@ function roots_widgets_init() {
   ));
 
   // Widgets
-  register_widget('Roots_Vcard_Widget');
+  //register_widget('Roots_Vcard_Widget');
 }
 add_action('widgets_init', 'roots_widgets_init');
 
 /**
  * Example vCard widget
  */
-class Roots_Vcard_Widget extends WP_Widget {
+/*class Roots_Vcard_Widget extends WP_Widget {
   private $fields = array(
     'title'          => 'Title (optional)',
     'street_address' => 'Street Address',
@@ -148,4 +148,4 @@ class Roots_Vcard_Widget extends WP_Widget {
     <?php
     }
   }
-}
+}*/
