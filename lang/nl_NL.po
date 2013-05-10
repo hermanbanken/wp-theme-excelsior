@@ -11,6 +11,7 @@ msgstr ""
 "X-Generator: Poedit 1.5.5\n"
 "Language: Dutch\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: 404.php:4
 msgid "Sorry, but the page you were trying to view does not exist."
@@ -18,7 +19,7 @@ msgstr "Sorry, de pagina die je probeert te bezoeken bestaat niet."
 
 #: 404.php:7
 msgid "It looks like this was the result of either:"
-msgstr "Het lijkt dat er een resultaat is of anders:"
+msgstr "Waarschijnlijk wordt dit veroorzaakt door:"
 
 #: 404.php:9
 msgid "a mistyped address"
@@ -181,8 +182,8 @@ msgstr "Je reactie wacht op goedkeuring."
 #: templates/comments.php:8
 msgid "One Response to &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s Responses to &ldquo;%2$s&rdquo;"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Een reactie op &ldquo;%2$s&rdquo;"
+msgstr[1] "Reacties op &ldquo;%2$s&rdquo;"
 
 #: templates/comments.php:18
 msgid "&larr; Older comments"

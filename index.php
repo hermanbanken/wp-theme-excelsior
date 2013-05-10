@@ -1,10 +1,17 @@
 <?php //get_template_part('templates/page', 'header'); ?>
 
 <?php if (!have_posts()) : ?>
-  <div class="alert">
-    <?php _e('Sorry, no results were found.', 'roots'); ?>
-  </div>
-  <?php get_search_form(); ?>
+	<article class="type-page double">
+		<div class="inner">
+			<?php get_template_part('templates/page', 'header'); ?>
+		
+			<div class="entry-content">
+  			<div class="alert"><?php _e('Sorry, no results were found.', 'roots'); ?></div>
+				
+				<?php get_search_form(); ?>
+			</div>
+		</div>
+	</article>
 <?php endif; ?>
 
 <?php while (have_posts()) : the_post(); ?>

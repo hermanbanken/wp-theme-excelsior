@@ -45,12 +45,12 @@ input[type=search], input[type=text], input[type=password], input[type=submit], 
 	box-shadow: none;
 	text-shadow: none;
 	font-style: normal;
-	color: #e7e7e7;
-	line-height: 15px;
-	height: 15px;
+	color: #333333;
+	line-height: 20px;
 	padding: 4px 8px;
+	margin-bottom: 10px;
 }	
-.btn {
+.btn-primary {
 	border: 1px solid @swatch-dark;
 	background: @swatch-normal;
 	color: white;
@@ -116,112 +116,110 @@ body {
 	}
 }
 
-body.page, body.single {
-	.box, article {
-		margin-bottom: 20px;
-		width: 100%;
-		
-		.inner {
-			background: white;
-			padding: 0 25px 10px;
-					
-			header {
-				background: @swatch-accent;
-				color: white;
-				padding: 32px 50px;
-				margin: 0 -25px 20px;
-			
-				h1 { margin: 0; }
-				p { margin: 0; }
-				a { color: white; &:hover { text-decoration: underline; } }
-		  
-				-webkit-column-span:all;
-			  -moz-column-span:all;
-			  column-span:all;
-			}
-		
-			header + p {
-				font-style: italic;
-				font-size: 18px;
-				font-weight: 400;
-				line-height: 26px;
-				font-family: @font-special;
-			}
-		
-			.entry-content {
-				-webkit-column-count: 2;
-				-moz-column-count: 2;
-				-ie-column-count: 2;
-				column-count: 2;
-			}
-			.entry-content > * {
-				-webkit-column-span: all;
-			  -moz-column-span: all;
-			  column-span: all;
-			}
-			.entry-content > p {
-				-webkit-column-span: 1;
-			  -moz-column-span: 1;
-			  column-span: 1;
-			}
-		
-			header + p {  
-				-webkit-column-span:all;
-			  -moz-column-span:all;
-			  column-span:all;
-			}
-		
-			p {
-				margin: 0 25px 25px;
-			}
-		}
-	}
-}
-
-body.blog, body.archive {
-	.box, article {
-		.inner {
-			color: white;
-			background: @swatch-accent;
-			.box-shadow(0 2px 5px 0 #aeaeae);
-			
-			header {
-				margin-bottom: 15px;
-				h2 {
-	 				font-family: @font-deluxe;
-	 				font-size: 25px;
-	 				font-weight: 300;
-					line-height: 24px;
-					text-transform: uppercase;
-				  a {
-		 				color: white;
-		 			}
-				}
-			}
-			.media-container {
-				overflow: hidden;
-				margin: 0 -15px 10px;
+/* Single or page style */
+body.page, body.single { article {
+	margin-bottom: 20px;
+	width: 100%;
+	
+	.inner {
+		background: white;
+		padding: 0 25px 10px;
 				
-				> * { display: block; max-width: 100%; }
-				> table { display: table; width: 100%; }
-				iframe, embed, img {
-					width: 100%;
-					min-height: 100px;
-				}
-			}
-			.meta {
-				display: block;
-				background: rgba(255,255,255,.3);
-				padding: 15px;
-				margin: 0 -15px -15px;
-				p.byline { margin: 0; font-weight: 600; }
-				font-weight: 200;
-				font-size: .9em;
-				line-height: 14px;
-			}
+		header {
+			background: @swatch-accent;
+			color: white;
+			padding: 32px 50px;
+			margin: 0 -25px 20px;
+		
+			h1 { margin: 0; }
+			p { margin: 0; }
+			a { color: white; &:hover { text-decoration: underline; } }
+	  
+			-webkit-column-span:all;
+		  -moz-column-span:all;
+		  column-span:all;
+		}
+	
+		header + p {
+			font-style: italic;
+			font-size: 18px;
+			font-weight: 400;
+			line-height: 26px;
+			font-family: @font-special;
+		}
+	
+		.entry-content {
+			-webkit-column-count: 2;
+			-moz-column-count: 2;
+			-ie-column-count: 2;
+			column-count: 2;
+		}
+		.entry-content > * {
+			-webkit-column-span: all;
+		  -moz-column-span: all;
+		  column-span: all;
+		}
+		.entry-content > p {
+			-webkit-column-span: 1;
+		  -moz-column-span: 1;
+		  column-span: 1;
+		}
+	
+		header + p {  
+			-webkit-column-span:all;
+		  -moz-column-span:all;
+		  column-span:all;
+		}
+	
+		p {
+			margin: 0 25px 25px;
 		}
 	}
-}
+}}
+
+/* Post style */
+body.archive, body.blog, body.search { article {
+	.inner {
+		color: white;
+		background: @swatch-accent;
+		.box-shadow(0 2px 5px 0 #aeaeae);
+	
+		header {
+			margin-bottom: 15px;
+			h2 {
+ 				font-family: @font-deluxe;
+ 				font-size: 25px;
+ 				font-weight: 300;
+				line-height: 24px;
+				text-transform: uppercase;
+			  a {
+	 				color: white;
+	 			}
+			}
+		}
+		.media-container {
+			overflow: hidden;
+			margin: 0 -15px 10px;
+		
+			> * { display: block; max-width: 100%; }
+			> table { display: table; width: 100%; }
+			iframe, embed, img {
+				width: 100%;
+				min-height: 100px;
+			}
+		}
+		.meta {
+			display: block;
+			background: rgba(255,255,255,.3);
+			padding: 15px;
+			margin: 0 -15px -15px;
+			p.byline { margin: 0; font-weight: 600; }
+			font-weight: 200;
+			font-size: .9em;
+			line-height: 14px;
+		}
+	}
+}}
 
 #bottomFooter {
 	background: white;
@@ -342,6 +340,25 @@ body.blog, body.archive {
 .sub-menu { display: none; }
 .current-menu-ancestor > .sub-menu, .current-menu-item > .sub-menu { display: block; }
 
+/* Infini-scroll */
+.post-nav { display: none; }
+#infscr-loading {
+	text-align: center;
+	z-index: 100;
+	position: fixed;
+	left: 50%;
+	bottom: 40px;
+	margin-left: -100px;
+	width: 200px;
+	padding: 10px;
+	background: #000;
+	opacity: 0.8;
+	color: #FFF;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
 /* ==========================================================================
    Media queries
    ========================================================================== */
@@ -381,15 +398,15 @@ body.blog, body.archive {
 	#content { margin-left: inherit; margin-right: inherit; }
 }
 @media (max-width: 480px) { 
-	body.blog, body.archive { .box, article, article.double { width: 100%; } }
+	body.blog, body.archive, body.search { .box, article, article.double { width: 100%; } }
 }
 @media (min-width: 979px) {
-	body.blog, body.archive { .box, article { width: 33%; &.double { width: 66%; } } }
+	body.blog, body.archive, body.search { .box, article { width: 33%; &.double { width: 66%; } } }
 }
 @media (min-width: 1200px) {
-	body.blog, body.archive { .box, article { width: 24.9%; &.double { width: 49.8%; } } }
-	body.single, body.page { .box, article { width: 66%; &.double { width: 100%; } } }
-	body.single, body.page { .box.sidebar { width: 33%; } }
+	body.blog, body.archive, body.search { .box, article { width: 24.9%; &.double { width: 49.8%; } } }
+	body.single, body.page, body.error404 { .box, article { width: 66%; &.double { width: 100%; } } }
+	body.single, body.page, body.error404 { .box.sidebar { width: 33%; } }
 }
 
 /* ==========================================================================
