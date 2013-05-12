@@ -33,7 +33,7 @@ if(count($att) > 0){
 <div id="single-bar" class="sidebar box">
 	<div class="inner">
 		<h2><?php _e('Attachments', "roots"); ?></h2>
-		<div class="entry-attachments"><ul>
+		<div class="entry-attachments media"><ul>
 			<?php	
 			foreach($att as $a){
 				$mime = explode("/", $a->post_mime_type);

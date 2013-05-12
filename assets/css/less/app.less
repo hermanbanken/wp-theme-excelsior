@@ -138,9 +138,9 @@ article.layout-single {
 			p { margin: 0; }
 			a { color: white; &:hover { text-decoration: underline; } }
 	  
-			-webkit-column-span:all;
+			/*-webkit-column-span:all;
 		  -moz-column-span:all;
-		  column-span:all;
+		  column-span:all;*/
 		}
 	
 		header + p {
@@ -151,7 +151,8 @@ article.layout-single {
 			font-family: @font-special;
 		}
 	
-		.entry-content {
+		.entry-content { padding: 20px 25px; }
+		/*.entry-content {
 			-webkit-column-count: 2;
 			-moz-column-count: 2;
 			-ie-column-count: 2;
@@ -172,13 +173,19 @@ article.layout-single {
 			-webkit-column-span:all;
 		  -moz-column-span:all;
 		  column-span:all;
-		}
+		}*/
 	
 		p {
-			margin: 0 25px 25px;
+			margin: 0 0 15px;
+		}
+		
+		.meta { 
+			padding: 20px;
+			margin: 10px -25px -10px;
+			background: #ccc;
 		}
 	}
-}}
+}
 
 /* Post style */
 article.layout-archive {
@@ -186,6 +193,8 @@ article.layout-archive {
 		color: white;
 		background: @swatch-accent;
 		.box-shadow(0 2px 5px 0 #aeaeae);
+		
+		a { color: white; }
 	
 		header {
 			margin-bottom: 15px;
@@ -195,10 +204,8 @@ article.layout-archive {
  				font-weight: 300;
 				line-height: 24px;
 				text-transform: uppercase;
-			  a {
-	 				color: white;
-	 			}
 			}
+			a { color: white; }
 		}
 		.media-container {
 			overflow: hidden;
@@ -216,13 +223,23 @@ article.layout-archive {
 			background: rgba(255,255,255,.3);
 			padding: 15px;
 			margin: 0 -15px -15px;
-			p.byline { margin: 0; font-weight: 600; }
+			p.byline { margin: 0; }
 			font-weight: 200;
 			font-size: .9em;
 			line-height: 14px;
 		}
 	}
-}}
+}
+
+.sidebar.box {
+	.inner { background: white; }
+	
+	ul { 
+		margin: 0 0 10px 0;
+		li.media { list-style: none; margin-top: 2px; }
+	}
+	.entry-attachments i { padding-right: 5px; } 
+}
 
 #bottomFooter {
 	background: white;
@@ -361,6 +378,45 @@ article.layout-archive {
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 }
+/* ==========================================================================
+   Custom elements / object / sections
+   ========================================================================== */
+
+.layout-single .gallery { margin: 0 -4px 15px; padding: 0; }
+
+.gallery {
+	/*box-shadow: inset 0 0 50px rgba(0,0,0,.3);*/
+	overflow: hidden;
+	
+	.gallery-item {
+		float: left;
+		position: relative;
+		margin: 0;
+		overflow: hidden;
+		
+		.thumbnail { border: none; box-shadow: none; }
+		
+		.gallery-caption {
+			position: absolute;
+			bottom: 0;
+			left: 0; right: 0;
+			background: rgba(0,0,0,.7);
+			color: white;
+			margin: 0 5px 5px 5px;
+			padding: 5px;
+			-webkit-transition:bottom .35s ease;
+				 -moz-transition:bottom .35s ease;
+					 -o-transition:bottom .35s ease;
+				 			transition:bottom .35s ease;
+		}
+		&:hover .gallery-caption { bottom: -100%; }
+	}
+	&.gallery-columns-1 .gallery-item { width: 100%;  }
+	&.gallery-columns-2 .gallery-item { width: 50%; }
+	&.gallery-columns-3 .gallery-item { width: 33.3%; }
+	&.gallery-columns-4 .gallery-item { width: 25%; }
+	&.gallery-columns-5 .gallery-item { width: 20%; }
+}
 
 /* ==========================================================================
    Media queries
@@ -401,15 +457,18 @@ article.layout-archive {
 	#content { margin-left: inherit; margin-right: inherit; }
 }
 @media (max-width: 480px) { 
-	body.blog, body.archive, body.search { .box, article, article.double { width: 100%; } }
+	body .box { width: 100%; }
 }
 @media (min-width: 979px) {
-	body.blog, body.archive, body.search { .box, article { width: 33%; &.double { width: 66%; } } }
+	article.layout-archive { width: 33%; &.double { width: 66%; } }
+	article.layout-single { width: 66%; &.double { width: 100%; } }
+	.box.sidebar { width: 33%; }
 }
 @media (min-width: 1200px) {
-	body.blog, body.archive, body.search { .box, article { width: 24.9%; &.double { width: 49.8%; } } }
-	body.single, body.page, body.error404 { .box, article { width: 66%; &.double { width: 100%; } } }
-	body.single, body.page, body.error404 { .box.sidebar { width: 33%; } }
+	article.layout-archive { width: 24.9%; &.double { width: 49.8%; } }
+	article.layout-single { width: 49.7%; &.double { width: 100%; } }
+	body.single article.layout-single, body.page article.layout-single  { width: 66%; &.double { width: 100%; } }
+	.box.sidebar { width: 33%; }
 }
 
 /* ==========================================================================
