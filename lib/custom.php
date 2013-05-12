@@ -117,17 +117,19 @@ function roots_get_all_attachements(){
 	$uploads = wp_upload_dir();
 	
 	// Custom post + text urls
-	$custompostvalues = array_filter(get_post_custom_values("_wp_format_media"));
+	$custompostvalues = (array) array_filter(get_post_custom_values("_wp_format_media"));
 	$urls = array_merge($custompostvalues, roots_get_urls(get_the_content()));
 	
 	// Load all old-school attachments
 	$args = array(
 		'post_parent' => get_the_ID(),
 		'post_type' => 'attachment',
+		'orderby' => 'post_mime_type title',
+		'order' => 'ASC'
 	);
 	$children =& get_children( $args );
 	foreach($children as $child){
-		if($index = array_search(wp_get_attachment_url($child->ID), $urls) || $index = array_search($child->guid, $urls)){
+		if(($index = array_search(wp_get_attachment_url($child->ID), $urls)) || ($index = array_search($child->guid, $urls))){
 			if(in_array($urls[$index], $custompostvalues))
 				$child->featured = true;
 			unset($urls[$index]);
@@ -153,6 +155,7 @@ function roots_get_all_attachements(){
 		// Remote attachment
 		$new = array(
 			"guid" => $url,
+			"post_title" => basename($url),
 			"post_type" => "attachment",
 			"post_mime_type" => $filetype['type']
 		);
@@ -168,7 +171,12 @@ function roots_get_all_attachements(){
 		if(in_array($a->guid, $encountered)) unset($attachments[$k]);
 		$encountered[] = $a->guid;
 	}
+	
+	uasort($attachments, '_roots_order_attachments');
 	return $attachments;
+}
+function _roots_order_attachments($a, $b){
+	return $a->post_mime_type == $b->post_mime_type ? strcmp($a->post_title, $b->post_title) : strcmp($a->post_mime_type, $b->post_mime_type);
 }
 
 // Lookup attachment by url
