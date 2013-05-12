@@ -1,5 +1,5 @@
 <?php while (have_posts()) : the_post(); ?>
-  <article id="post-<?php the_ID(); ?>" <?php post_class('box'); ?>>
+  <article id="post-<?php the_ID(); ?>" <?php post_class('box layout-single'); ?>>
     <div class="inner">
 			<header>
 	      <h1 class="entry-title"><?php the_title(); ?></h1>

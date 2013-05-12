@@ -36,6 +36,10 @@ h1 {
 	text-transform: uppercase;
 	line-height: 36px;
 }
+h2, h3, h4, h5 { 
+	text-transform: uppercase;
+	font-weight: 200;
+}
 
 input[type=search], input[type=text], input[type=password], input[type=submit], .btn {
 	border: 1px solid #e7e7e7;
@@ -117,8 +121,7 @@ body {
 }
 
 /* Single or page style */
-body.page, body.single { article {
-	margin-bottom: 20px;
+article.layout-single {
 	width: 100%;
 	
 	.inner {
@@ -178,7 +181,7 @@ body.page, body.single { article {
 }}
 
 /* Post style */
-body.archive, body.blog, body.search { article {
+article.layout-archive {
 	.inner {
 		color: white;
 		background: @swatch-accent;

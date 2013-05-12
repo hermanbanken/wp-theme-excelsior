@@ -1,4 +1,4 @@
-<article class="type-page">
+<article class="type-page layout-single">
 	<div class="inner">
 		<?php get_template_part('templates/page', 'header'); ?>
 		

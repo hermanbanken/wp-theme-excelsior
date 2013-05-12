@@ -1,7 +1,7 @@
 <?php //get_template_part('templates/page', 'header'); ?>
 
 <?php if (!have_posts()) : ?>
-	<article class="type-page double">
+	<article class="type-error layout-single">
 		<div class="inner">
 			<?php get_template_part('templates/page', 'header'); ?>
 		

@@ -4,7 +4,8 @@
 
 // jQuery Masonry
 $(window).on("load", function(){
-	$container = $('.search .articles, .blog .articles, .archive .articles');
+	$container = $('.articles');
+	
 	if ( $container.find("article").size() > 1 )
 	{
 		$container.imagesLoaded(function(){
@@ -12,8 +13,10 @@ $(window).on("load", function(){
 			  itemSelector: 'article',
 				// set columnWidth a fraction of the container width
 				columnWidth: function( containerWidth ) {
-					return $("article:not(.double)").width();
-			
+					var w = $container.find(".layout-archive").width();
+					console.log("Width: ",w);
+					return w || 200;
+					
 					if ( containerWidth > 1000 )
 						return containerWidth / 5;
 					else if ( containerWidth > 800 )
