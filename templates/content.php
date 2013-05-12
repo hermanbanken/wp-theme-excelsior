@@ -7,7 +7,7 @@
 		<div class="entry-summary">
 			<?php the_excerpt(); ?>
 		</div>
-		<div class='meta'>
+		<div class='meta shade'>
 			<?php get_template_part('templates/entry-meta'); ?>
 		</div>
 		<footer>

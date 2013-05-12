@@ -9,7 +9,7 @@ function roots_get_featured_media(){
 	$content = get_the_content();
 	global $wp_filter; global $post;
 	
-	$classes = array("media-container");
+	$classes = array("media-container", "shade");
 	$content = apply_filters('the_content', $content);	
 	$embed = false;
 	

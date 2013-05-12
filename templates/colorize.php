@@ -1,4 +1,4 @@
-<?php
+<?php /*
 	$green = new Color(2,176,155);
 	if($customColor = get_post_custom_values('_roots_bg_color')){
 		$color = Color::fromHex($customColor[0]);
