@@ -59,3 +59,31 @@ $(window).on("resize load", function(e){
 		$(this).height(9 * $(this).width() / 16);
 	});
 });
+
+// Gallery show functionality
+$(window).on("load", function(e){
+	$(".media-container.gallery-preview").each(function(){
+		var i = 0, gallery = $(this);
+				
+		function update(i){
+			var url = gallery.find(".image").slice(i, i+1).attr('src');
+			gallery.find(".ratio-controller").css("backgroundImage", "url("+url+")");
+		}
+				
+		update(0);
+		//gallery.find("img").first().show();
+		gallery.on("click", ".next", function(){ 
+			//var c = gallery.find("img:visible");
+			if(i+1 < gallery.find(".image").size())
+				update(++i);
+			return false;
+		}).on("click", ".prev", function(){ 
+			//var c = gallery.find("img:visible");
+			if(i-1 >= 0)
+				update(--i);
+			//if(c.prev("img").size() > 0)
+			//	c.hide().prev().show();
+			return false;
+		});
+	});
+});

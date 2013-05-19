@@ -65,7 +65,7 @@ input[type=search], input[type=text], input[type=password], input[type=submit], 
    Structure
    ========================================================================== */
 
-.wrap { overflow: hidden; margin-top: 10px; }
+.wrap { overflow: hidden; margin-top: 10px; max-width: 1440px; margin: 10px auto; }
 
 #columnleft {
 	float: left;
@@ -184,6 +184,8 @@ article.layout-single {
 			margin: 10px -25px -10px;
 			background: #ccc;
 		}
+		
+		footer { clear: both; }
 	}
 }
 
@@ -416,6 +418,52 @@ article.layout-archive {
 	&.gallery-columns-3 .gallery-item { width: 33.3%; }
 	&.gallery-columns-4 .gallery-item { width: 25%; }
 	&.gallery-columns-5 .gallery-item { width: 20%; }
+}
+
+figure { 
+	margin: 0; 
+	&.thumbnail { display:inline-block; }
+}
+.alignleft { float: left; margin-right: 10px; }
+.alignright { float: right; margin-left: 10px; }
+
+article .inner .media-container.gallery-preview {
+	background: black;
+	position: relative;
+	
+	.ratio-controller {
+		background-size: cover;
+		background-position: 50% 40%;
+	}
+	
+	.control { position: absolute; top: 0; width: 30%; height: 100%; }
+	.control:hover { opacity: 1; }
+	.control.next, .control.next i { right: 0 }
+	.control.prev, .control.prev i { left: 0 }
+	.control i { 
+		width: 32px; 
+		height: 32px; 
+		text-align: center; 
+		line-height: 32px; 
+		opacity: 0; 
+		background: #555;
+		position: absolute;
+		bottom: 0;
+		-webkit-transition:opacity .35s ease;
+			 -moz-transition:opacity .35s ease;
+				 -o-transition:opacity .35s ease;
+			 			transition:opacity .35s ease;
+	}
+	.control:hover i { opacity: 1; }
+}
+
+.gallery-preview, .gallery {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 /* ==========================================================================

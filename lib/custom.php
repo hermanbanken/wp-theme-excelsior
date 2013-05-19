@@ -70,7 +70,43 @@ function roots_get_featured_media(){
 			}
 		case 'gallery':
 			// Display a gallery you can slide and stuff
-		
+			$pattern = get_shortcode_regex();
+		  if (   preg_match_all( '/'. $pattern .'/s', get_the_content(), $matches )
+		         && array_key_exists( 2, $matches )
+		         && in_array( 'gallery', $matches[2] ) )
+		  {
+				$index = array_search( 'gallery', $matches[2] );
+				preg_match_all("|([\w]+)=.([^\s]*?). |", $matches[3][$index]." ", $attr);
+
+				$args = array("post_mime_type" => "image", "post_parent" => get_the_ID(), "post_type" => "attachment");
+				
+				// WP 3+ uses ids
+				if(in_array('ids', $attr[1])){
+					$ids = $attr[2][array_search('ids', $attr[1])];
+					$args += array("include" => explode(",", $ids));
+				}
+				// Before WP 3 [gallery] used {include} and {exclude}
+				else {
+					$include = in_array('include', $attr[1]) ? $attr[2][array_search('include', $attr[1])] : false;
+					$exclude = in_array('exclude', $attr[1]) ? $attr[2][array_search('exclude', $attr[1])] : false;
+					if($include) $args += array("include" => explode(",", $include));
+					if($exclude) $args += array("include" => explode(",", $exclude));	 
+				}
+				
+				$images =& get_children( $args );
+				if(count($images)){
+					$classes[] = "gallery-preview";
+					$i = 0;
+					list($first) = wp_get_attachment_image_src( current($images)->ID, 'medium' );
+					$embed = "<img class='ratio-controller' src='".get_template_directory_uri() . '/assets/img/transparent-16x9.png'."' style='width:100%;background-image:url($first)' />";
+					foreach($images as $img){
+						$style = array("style"=>"display:none");
+						$embed .= wp_get_attachment_image( $img->ID, 'medium', true, array("class"=>"image") + $style );
+					}
+					$embed .= "<a class='prev control'><i class='icon-chevron-left'></i></a><a class='next control'><i class='icon-chevron-right'></i></a>";
+					break;
+				}
+			}
 		default:
 			// Use thumbnail if available
 			if(has_post_thumbnail())
