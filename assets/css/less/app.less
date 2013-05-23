@@ -233,6 +233,22 @@ article.layout-archive {
 	}
 }
 
+/* Event */
+.type-event, .type-bc_event {
+	header p { font-weight: 600; }
+	date {
+		float: right; width: 50px; text-align: center; 
+		margin: 0 0 10px 10px;
+		background: #3f72a6;
+		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		
+		month, day { text-transform: uppercase; display: block; }
+		month { font-size: 11px; background-color: rgba(255,255,255,0.2); letter-spacing: 4px; }
+		day { font-size: 29px; line-height: 40px; font-weight: bold; letter-spacing: 2px; }
+	}
+}
+
+/* Sidebar */
 .sidebar.box {
 	.inner { background: white; }
 	
@@ -240,7 +256,24 @@ article.layout-archive {
 		margin: 0 0 10px 0;
 		li.media { list-style: none; margin-top: 2px; }
 	}
-	.entry-attachments i { padding-right: 5px; } 
+	.entry-attachments i { padding-right: 5px; }
+	
+	.media-container {
+		overflow: hidden;
+		margin: 0 -15px 10px;
+	}
+	.googlemaps {
+		height: 200px;
+		margin: 10px -15px -15px
+	}
+}
+
+.sidebar.box.contact {
+	.icon {
+		display: inline-block;
+		width: 14px;
+		text-align: center;
+	}
 }
 
 #bottomFooter {

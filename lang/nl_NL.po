@@ -13,103 +13,129 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: 404.php:4
+#: 404.php:7
 msgid "Sorry, but the page you were trying to view does not exist."
 msgstr "Sorry, de pagina die je probeert te bezoeken bestaat niet."
 
-#: 404.php:7
+#: 404.php:10
 msgid "It looks like this was the result of either:"
 msgstr "Waarschijnlijk wordt dit veroorzaakt door:"
 
-#: 404.php:9
+#: 404.php:12
 msgid "a mistyped address"
 msgstr "een verkeerd adres"
 
-#: 404.php:10
+#: 404.php:13
 msgid "an out-of-date link"
 msgstr "een verouderde link"
 
-#: index.php:5
-msgid "Sorry, no results were found."
+#: index.php:13
+msgid "Sorry, no posts were found."
 msgstr "Sorry, geen resultaten gevonden."
 
-#: index.php:17
+#: index.php:43
 msgid "&larr; Older posts"
 msgstr "&larr; Oudere berichten"
 
-#: index.php:18
+#: index.php:44
 msgid "Newer posts &rarr;"
 msgstr "Nieuwste berichten &rarr;"
 
-#: lib/activation.php:33 lib/activation.php:34
+#: lib/activation.php:28 lib/activation.php:29
 msgid "Theme Activation"
 msgstr "Thema Activeren"
 
-#: lib/activation.php:70
+#: lib/activation.php:51
+#, php-format
 msgid "%s Theme Activation"
 msgstr "%s Thema Activeren"
 
-#: lib/activation.php:85 lib/activation.php:87
+#: lib/activation.php:62 lib/activation.php:64
 msgid "Create static front page?"
 msgstr "Statische voorpagina maken?"
 
-#: lib/activation.php:89 lib/activation.php:102 lib/activation.php:115
-#: lib/activation.php:128 lib/activation.php:141
+#: lib/activation.php:66 lib/activation.php:79 lib/activation.php:92
+#: lib/activation.php:105 lib/activation.php:118
 msgid "Yes"
 msgstr "Ja"
 
-#: lib/activation.php:90 lib/activation.php:103 lib/activation.php:116
-#: lib/activation.php:129 lib/activation.php:142
+#: lib/activation.php:67 lib/activation.php:80 lib/activation.php:93
+#: lib/activation.php:106 lib/activation.php:119
 msgid "No"
 msgstr "Nee"
 
-#: lib/activation.php:93
+#: lib/activation.php:70
 msgid "Create a page called Home and set it to be the static front page"
 msgstr "Maak een \"home\" pagina en stel een statische voorpagina in"
 
-#: lib/activation.php:98
+#: lib/activation.php:75
 msgid "Change permalink structure?"
 msgstr "Permalink structuur veranderen?"
 
-#: lib/activation.php:100
+#: lib/activation.php:77
 msgid "Update permalink structure?"
 msgstr "Permalink structuur updaten?"
 
-#: lib/activation.php:106
+#: lib/activation.php:83
 msgid "Change permalink structure to /&#37;postname&#37;/"
 msgstr "Verander permalink structuur naar /&#37;postname&#37;/"
 
-#: lib/activation.php:111
+#: lib/activation.php:88
 msgid "Change uploads folder?"
 msgstr "Upload map veranderen?"
 
-#: lib/activation.php:113
+#: lib/activation.php:90
 msgid "Update uploads folder?"
 msgstr "Upload map updaten?"
 
-#: lib/activation.php:119
+#: lib/activation.php:96
 msgid "Change uploads folder to /assets/ instead of /wp-content/uploads/"
 msgstr "Verander upload map  naar /assets/ instead of /wp-content/uploads/"
 
-#: lib/activation.php:124 lib/activation.php:126
+#: lib/activation.php:101 lib/activation.php:103
 msgid "Create navigation menu?"
 msgstr "Navigatie menu maken?"
 
-#: lib/activation.php:132
+#: lib/activation.php:109
 msgid "Create the Primary Navigation menu and set the location"
 msgstr "Maak een hoofd menu en stel de lokatie in"
 
-#: lib/activation.php:137 lib/activation.php:139
+#: lib/activation.php:114 lib/activation.php:116
 msgid "Add pages to menu?"
 msgstr "Pagina's toevoegen aan menu?"
 
-#: lib/activation.php:145
+#: lib/activation.php:122
 msgid "Add all current published pages to the Primary Navigation"
 msgstr "Voeg alle gepubliceerde pagina's toe aan de standaard navigatie"
 
-#: lib/cleanup.php:382
+#: lib/admin-id3.php:37
+msgid "You do not have sufficient permissions to access this page."
+msgstr "U heeft niet voldoende rechten om deze pagina te mogen bekijken."
+
+#: lib/admin-id3.php:42
+msgid ""
+"Some media files contain ID3-tags. This is information, for example, about "
+"who made the media. This data is looked up when uploading files, but you "
+"might have activated this theme after uploading some files. These files "
+"aren't indexed yet. You can do this here."
+msgstr ""
+"Sommige media bestanden bevatten ID3-data. Dit is informatie over, "
+"bijvoorbeeld, de auteur. Deze data wordt geanalyseerd bij het uploaden, maar "
+"het kan zijn dat je het huidige thema hebt geactiveerd na het uploaden van "
+"bepaalde media bestanden. Deze bestanden zijn nog niet geïndexeerd. U kunt "
+"dit hier doen."
+
+#: lib/cleanup.php:353
 msgid "Continued"
 msgstr "Vervolgd"
+
+#: lib/color.php:35
+msgid "Color"
+msgstr "Kleur"
+
+#: lib/color.php:38
+msgid "A color used to differ posts in different categories."
+msgstr "Een kleur om onderscheid te maken tussen verschillende categorieën."
 
 #: lib/init.php:11
 msgid "Primary Navigation"
@@ -120,22 +146,27 @@ msgid "Latest Posts"
 msgstr "Laatste berichten"
 
 #: lib/utils.php:69
+#, php-format
 msgid "Daily Archives: %s"
 msgstr "Dagelijkse berichten: %s"
 
 #: lib/utils.php:71
+#, php-format
 msgid "Monthly Archives: %s"
 msgstr "Maandelijkse berichten: %s"
 
 #: lib/utils.php:73
+#, php-format
 msgid "Yearly Archives: %s"
 msgstr "Jaarlijkse berichten: %s"
 
 #: lib/utils.php:75
+#, php-format
 msgid "Author Archives: %s"
 msgstr "Auteurs berichten: %s"
 
 #: lib/utils.php:80
+#, php-format
 msgid "Search Results for %s"
 msgstr "Zoekresultaten voor %s"
 
@@ -143,31 +174,16 @@ msgstr "Zoekresultaten voor %s"
 msgid "Not Found"
 msgstr "Niet gevonden"
 
-#: lib/utils.php:94
-msgid "Please make sure your <a href=\"%s\">.htaccess</a> file is writable "
-msgstr "Zorg ervoor dat <a href=\"%s\">.htaccess</a> schrijfbaar is"
-
 #: lib/widgets.php:8
 msgid "Primary Sidebar"
 msgstr "Hoofd Sidebar"
 
-#: lib/widgets.php:17
-msgid "Footer"
-msgstr "Footer"
-
-#: lib/widgets.php:45
-msgid "Use this widget to add a vCard"
-msgstr "Gebruik deze widget om een vCard toe te voegen"
-
-#: lib/widgets.php:47
-msgid "Roots: vCard"
-msgstr "Roots: vCard"
-
-#: lib/widgets.php:74
-msgid "vCard"
-msgstr "vCard"
+#: lib/widgets.php:35
+msgid "Below menu"
+msgstr "Onder menu"
 
 #: templates/comment.php:4
+#, php-format
 msgid "%1$s"
 msgstr "%1$s"
 
@@ -180,10 +196,9 @@ msgid "Your comment is awaiting moderation."
 msgstr "Je reactie wacht op goedkeuring."
 
 #: templates/comments.php:8
+#, php-format
 msgid "One Response to &ldquo;%2$s&rdquo;"
-msgid_plural "%1$s Responses to &ldquo;%2$s&rdquo;"
-msgstr[0] "Een reactie op &ldquo;%2$s&rdquo;"
-msgstr[1] "Reacties op &ldquo;%2$s&rdquo;"
+msgstr "Een reactie op &ldquo;%2$s&rdquo;"
 
 #: templates/comments.php:18
 msgid "&larr; Older comments"
@@ -202,14 +217,17 @@ msgid "Leave a Reply"
 msgstr "Plaats een reactie"
 
 #: templates/comments.php:45
+#, php-format
 msgid "Leave a Reply to %s"
 msgstr "Plaats een reactie bij %s"
 
 #: templates/comments.php:48
+#, php-format
 msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
 msgstr "Je moet <a href=\"%s\">ingelogd</a> zijn om een reactie te plaatsen."
 
 #: templates/comments.php:53
+#, php-format
 msgid "Logged in as <a href=\"%s/wp-admin/profile.php\">%s</a>."
 msgstr "Ingelogd als <a href=\"%s/wp-admin/profile.php\">%s</a>."
 
@@ -245,7 +263,8 @@ msgstr "Reactie"
 msgid "Submit Comment"
 msgstr "Reactie toevoegen"
 
-#: templates/content-single.php:11
+#: templates/content-single.php:12 templates/single/bc_event.php:18
+#: templates/single/post.php:11
 msgid "Pages:"
 msgstr "Pagina's:"
 
@@ -253,10 +272,60 @@ msgstr "Pagina's:"
 msgid "By"
 msgstr "Door"
 
-#: templates/searchform.php:2
+#: templates/quickbar.php:6 templates/searchform.php:2
 msgid "Search for:"
 msgstr "Zoeken naar:"
 
 #: templates/searchform.php:3 templates/searchform.php:4
 msgid "Search"
 msgstr "Zoeken"
+
+#: templates/single-bar.php:3
+msgid "About"
+msgstr "Over"
+
+#: templates/single-bar.php:12
+#, php-format
+msgid "More from %1$s"
+msgstr "Meer van %1$s"
+
+#: templates/single-bar.php:35
+msgid "Attachments"
+msgstr "Bijlagen"
+
+#: templates/archive/bc_event.php:11 templates/single/bc_event.php:11
+msgid "F j, Y @ g:i a"
+msgstr "j M Y @ H:i"
+
+#: templates/archive/bc_event.php:11 templates/single/bc_event.php:11
+msgid "g:i a"
+msgstr "H:i"
+
+#: templates/single/bc_event.php:33
+msgid "More Information"
+msgstr "Meer informatie"
+
+#: templates/single/bc_event.php:67
+msgid "Location"
+msgstr "Locatie"
+
+#~ msgid "Use to control playlists."
+#~ msgstr "Gebruik om afspeellijsten te bedienen."
+
+#~ msgid "Playlist"
+#~ msgstr "Afspeellijst"
+
+#~ msgid "Please make sure your <a href=\"%s\">.htaccess</a> file is writable "
+#~ msgstr "Zorg ervoor dat <a href=\"%s\">.htaccess</a> schrijfbaar is"
+
+#~ msgid "Footer"
+#~ msgstr "Footer"
+
+#~ msgid "Use this widget to add a vCard"
+#~ msgstr "Gebruik deze widget om een vCard toe te voegen"
+
+#~ msgid "Roots: vCard"
+#~ msgstr "Roots: vCard"
+
+#~ msgid "vCard"
+#~ msgstr "vCard"
