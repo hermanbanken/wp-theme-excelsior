@@ -137,6 +137,18 @@ msgstr "Kleur"
 msgid "A color used to differ posts in different categories."
 msgstr "Een kleur om onderscheid te maken tussen verschillende categorieën."
 
+#: lib/facebook.php:20
+msgid "Facebook settings"
+msgstr "Facebook instellingen"
+
+#: lib/facebook.php:24
+msgid "App ID"
+msgstr "Applicatie ID"
+
+#: lib/facebook.php:29
+msgid "App Secret"
+msgstr "Applicatie geheim"
+
 #: lib/init.php:11
 msgid "Primary Navigation"
 msgstr "Standaard Navigatie"
@@ -182,18 +194,18 @@ msgstr "Hoofd Sidebar"
 msgid "Below menu"
 msgstr "Onder menu"
 
-#: templates/comment.php:4
+#: templates/comment.php:7
+msgid "Your comment is awaiting moderation."
+msgstr "Je reactie wacht op goedkeuring."
+
+#: templates/comment.php:14
 #, php-format
 msgid "%1$s"
 msgstr "%1$s"
 
-#: templates/comment.php:5
-msgid "(Edit)"
-msgstr "(Bewerken)"
-
-#: templates/comment.php:9
-msgid "Your comment is awaiting moderation."
-msgstr "Je reactie wacht op goedkeuring."
+#: templates/comment.php:15
+msgid "Edit"
+msgstr "Bewerken"
 
 #: templates/comments.php:8
 #, php-format
@@ -221,45 +233,20 @@ msgstr "Plaats een reactie"
 msgid "Leave a Reply to %s"
 msgstr "Plaats een reactie bij %s"
 
-#: templates/comments.php:48
+#: templates/comments.php:52
+msgid "Login with"
+msgstr "Login met"
+
+#: templates/comments.php:56
 #, php-format
-msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
-msgstr "Je moet <a href=\"%s\">ingelogd</a> zijn om een reactie te plaatsen."
-
-#: templates/comments.php:53
-#, php-format
-msgid "Logged in as <a href=\"%s/wp-admin/profile.php\">%s</a>."
-msgstr "Ingelogd als <a href=\"%s/wp-admin/profile.php\">%s</a>."
-
-#: templates/comments.php:54
-msgid "Log out of this account"
-msgstr "Dit account uitloggen"
-
-#: templates/comments.php:54
-msgid "Log out &raquo;"
-msgstr "Uitloggen &raquo;"
+msgid "Logged in as %s"
+msgstr "Ingelogd als %s"
 
 #: templates/comments.php:57
-msgid "Name"
-msgstr "Naam"
-
-#: templates/comments.php:57 templates/comments.php:59
-msgid " (required)"
-msgstr " (noodzakelijk)"
+msgid "Logout"
+msgstr "Log uit"
 
 #: templates/comments.php:59
-msgid "Email (will not be published)"
-msgstr "Email adres (zal niet getoond worden)"
-
-#: templates/comments.php:61
-msgid "Website"
-msgstr "Website"
-
-#: templates/comments.php:64
-msgid "Comment"
-msgstr "Reactie"
-
-#: templates/comments.php:66
 msgid "Submit Comment"
 msgstr "Reactie toevoegen"
 
@@ -308,6 +295,34 @@ msgstr "Meer informatie"
 #: templates/single/bc_event.php:67
 msgid "Location"
 msgstr "Locatie"
+
+#~ msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+#~ msgstr ""
+#~ "Je moet <a href=\"%s\">ingelogd</a> zijn om een reactie te plaatsen."
+
+#~ msgid "Logged in as <a href=\"%s/wp-admin/profile.php\">%s</a>."
+#~ msgstr "Ingelogd als <a href=\"%s/wp-admin/profile.php\">%s</a>."
+
+#~ msgid "Log out of this account"
+#~ msgstr "Dit account uitloggen"
+
+#~ msgid "Log out &raquo;"
+#~ msgstr "Uitloggen &raquo;"
+
+#~ msgid "Name"
+#~ msgstr "Naam"
+
+#~ msgid " (required)"
+#~ msgstr " (noodzakelijk)"
+
+#~ msgid "Email (will not be published)"
+#~ msgstr "Email adres (zal niet getoond worden)"
+
+#~ msgid "Website"
+#~ msgstr "Website"
+
+#~ msgid "Comment"
+#~ msgstr "Reactie"
 
 #~ msgid "Use to control playlists."
 #~ msgstr "Gebruik om afspeellijsten te bedienen."

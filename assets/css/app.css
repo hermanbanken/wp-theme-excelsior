@@ -285,6 +285,40 @@ article.layout-archive .inner .meta {
 article.layout-archive .inner .meta p.byline {
   margin: 0;
 }
+/* Comments layout */
+#comments.inner,
+#respond.inner {
+  padding-top: 15px;
+}
+form#commentform .with-user {
+  display: none;
+}
+form#commentform.loggedin .with-user {
+  display: inline;
+}
+form#commentform.loggedin .without-user {
+  display: none;
+}
+form#commentform.error {
+  color: red;
+}
+form#commentform.error textarea {
+  border-color: red;
+}
+form#commentform textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  box-shadow: inset 0 0 15px #ccc;
+  box-sizing: border-box;
+}
+form#commentform input.btn-primary {
+  float: right;
+  margin-bottom: 0;
+}
+form#commentform p {
+  overflow: hidden;
+}
 /* Event */
 .type-event header p,
 .type-bc_event header p {

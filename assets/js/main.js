@@ -87,3 +87,43 @@ $(window).on("load", function(e){
 		});
 	});
 });
+
+$(function(){
+	$(document.body).on("submit", "#commentform",function(){
+		if($(this).find("[name=facebook]").val()) {
+			$(this).removeClass("error");
+		} else {
+			$(this).addClass("error");
+			return false;
+		}
+	}).on("click", ".providerLogin", function(){
+		var provider = $(this).attr('data-provider'),
+				target = $($(this).attr('data-target')).addClass("login-in-progress");
+		
+		if(provider == "facebook" && window.FB){
+			FB.login(function(response){
+				console.log(response);
+				if (response.authResponse) {
+					var sr = response.authResponse.signedRequest;
+					target.find('.with-user').append("<input type='hidden' name='facebook' value='"+sr+"' />");
+
+			  	FB.api('/me', function(user) {
+						console.log("/me", user);
+						var logout = target.find(".logout").one("click", function(){
+							FB.logout();
+							target.find("[name=facebook]").remove();
+							target.removeClass('loggedin');
+						});
+						target.addClass('loggedin');
+						target.find('.displayname').text(user.name);
+						target.removeClass("login-in-progress");
+					});
+
+			  } else {
+					console.log('User cancelled login or did not fully authorize.');
+					target.removeClass("login-in-progress").append("<div class='warning'>Login failed</div>");
+			  }
+			}, {scope: 'email,user_likes'});
+		}
+	});
+});

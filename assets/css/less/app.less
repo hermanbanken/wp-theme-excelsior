@@ -233,6 +233,32 @@ article.layout-archive {
 	}
 }
 
+/* Comments layout */
+#comments.inner, #respond.inner {
+	padding-top: 15px;
+}
+form#commentform {
+	.with-user { display: none; }
+	&.loggedin .with-user { display: inline; }
+	&.loggedin .without-user { display: none; }
+	
+	&.error { color: red; textarea { border-color: red; }}
+	
+	textarea { 
+		width: 100%;
+		border: 1px solid #ccc;
+		border-radius: 0;
+		box-shadow: inset 0 0 15px #ccc;
+		box-sizing: border-box;
+	}
+	
+	input.btn-primary {
+		float:right;
+		margin-bottom: 0;
+	}
+	p { overflow: hidden; }
+}
+
 /* Event */
 .type-event, .type-bc_event {
 	header p { font-weight: 600; }
