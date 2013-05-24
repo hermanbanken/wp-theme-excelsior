@@ -198,6 +198,10 @@ msgstr "Onder menu"
 msgid "Your comment is awaiting moderation."
 msgstr "Je reactie wacht op goedkeuring."
 
+#: templates/comment.php:13
+msgid "Reply"
+msgstr "Reageer"
+
 #: templates/comment.php:14
 #, php-format
 msgid "%1$s"
