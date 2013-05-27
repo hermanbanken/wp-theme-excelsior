@@ -5,7 +5,7 @@ require("color.class.php");
  */
 add_action( 'wp_enqueue_scripts', 'roots_enqueue_color_stylesheets', 200 );
 add_action( 'admin_enqueue_scripts', 'roots_enqueue_color_picker', 1000 );
-add_action( 'edit_category_form_fields', 'roots_edit_category', 10, 2);
+add_action( 'edit_category_form_fields', 'roots_edit_category', 10, 1);
 add_action( 'edited_category', 'roots_save_category', 10, 2);
 
 function roots_enqueue_color_stylesheets() {
@@ -23,7 +23,7 @@ function roots_enqueue_color_picker() {
 }
 
 /* Custom html */
-function roots_edit_category($tag, $taxonomy)
+function roots_edit_category($tag)
 {
 	$default = "#02b09b";
 	

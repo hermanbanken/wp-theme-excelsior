@@ -12,10 +12,10 @@ function roots_widgets_init() {
     'before_title'  => '<h3>',
     'after_title'   => '</h3>',
   ));
-
-  /*register_sidebar(array(
-    'name'          => __('Footer', 'roots'),
-    'id'            => 'sidebar-footer',
+	
+  register_sidebar(array(
+    'name'          => __('Below menu', 'roots'),
+    'id'            => 'sidebar-menu',
     'before_widget' => '<section class="widget %1$s %2$s"><div class="widget-inner">',
     'after_widget'  => '</div></section>',
     'before_title'  => '<h3>',
@@ -23,18 +23,9 @@ function roots_widgets_init() {
   ));
 	
   register_sidebar(array(
-    'name'          => __('Front page 3th column', 'roots'),
-    'id'            => 'frontpage-widgets-column',
-    'before_widget' => '<section class="widget %1$s %2$s"><div class="widget-inner">',
-    'after_widget'  => '</div></section>',
-    'before_title'  => '<h3>',
-    'after_title'   => '</h3>',
-  ));*/
-	
-  register_sidebar(array(
-    'name'          => __('Below menu', 'roots'),
-    'id'            => 'sidebar-menu',
-    'before_widget' => '<section class="widget %1$s %2$s"><div class="widget-inner">',
+    'name'          => __('Next to single post', 'roots'),
+    'id'            => 'sidebar-posts',
+    'before_widget' => '<section class="widget box sidebar %1$s %2$s"><div class="widget-inner inner">',
     'after_widget'  => '</div></section>',
     'before_title'  => '<h3>',
     'after_title'   => '</h3>',

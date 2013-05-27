@@ -14,6 +14,6 @@ require_once locate_template('/lib/rewrites.php');        // URL rewriting for a
 require_once locate_template('/lib/widgets.php');         // Sidebars and widgets
 require_once locate_template('/lib/scripts.php');         // Scripts and stylesheets
 require_once locate_template('/lib/color.php');           // Color functions
-require_once locate_template('/lib/facebook.php');        // Facebook integration
+//require_once locate_template('/lib/facebook.php');        // Facebook integration
 require_once locate_template('/lib/admin-id3.php');       // Admin page for ID3
 require_once locate_template('/lib/custom.php');          // Custom functions

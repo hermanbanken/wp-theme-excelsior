@@ -234,6 +234,8 @@ article.layout-archive {
 }
 
 /* Comments layout */
+.inner.disqus { padding-top: 15px !important; }
+
 #comments.inner, #respond.inner {
 	padding-top: 15px;
 }
@@ -278,11 +280,14 @@ form#commentform {
 .sidebar.box {
 	.inner { background: white; }
 	
-	ul { 
-		margin: 0 0 10px 0;
-		li.media { list-style: none; margin-top: 2px; }
+	.entry-attachments {
+		ul { 
+			margin: 0 0 10px 0;
+			
+			li.media { list-style: none; margin-top: 2px; }
+			i { padding-right: 5px; }
+		}
 	}
-	.entry-attachments i { padding-right: 5px; }
 	
 	.media-container {
 		overflow: hidden;
@@ -312,6 +317,23 @@ form#commentform {
    Menu
    ========================================================================== */
 
+.widget {
+	.widget-inner {	
+		background: white;
+		padding: 15px 25px;
+		.box-shadow(0 2px 5px 0 #aeaeae);
+	}
+	
+	table { width: 100%; }
+	
+	&.widget_search { 
+		form { margin: 0; }
+		input#s { width: 150px; margin: 0; } 
+		input#searchsubmit { width: 55px; margin: 0; }
+	}
+	&.widget_playlist .widget-inner { padding: 0; }
+}
+
 #menu {
 	color: white;
 	padding-bottom: 20px;
@@ -330,15 +352,6 @@ form#commentform {
 			border-width: 1px 0;
 			padding: 10px 0;
 			margin: 10px 0;
-		}
-	}
-	
-	.playlist {
-		margin: 10px -30px 0 -30px;
-		box-shadow: inset 0 0 5px black;
-		background-color: #555;
-		> * {
-			max-width: 100%;
 		}
 	}
 	
@@ -455,7 +468,7 @@ form#commentform {
 		margin: 0;
 		overflow: hidden;
 		
-		.thumbnail { border: none; box-shadow: none; }
+		.thumbnail { border: none; box-shadow: none; img { width: 100%; } }
 		
 		.gallery-caption {
 			position: absolute;

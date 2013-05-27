@@ -12,6 +12,8 @@
       <?php the_tags('<ul class="entry-tags"><li>','</li><li>','</li></ul>'); ?>
     </footer>
 	</div>
-	<?php comments_template('/templates/comments.php'); ?>
+	<div class="inner disqus">
+		<?php comments_template('/templates/comments.php'); ?>
+	</div>
 </article>
-<?php get_template_part('templates/single-bar'); ?>
+<?php get_template_part('templates/part/single-bar'); ?>

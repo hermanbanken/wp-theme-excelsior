@@ -1,4 +1,4 @@
-<div id="single-bar" class="sidebar box">
+<div class="sidebar box">
 	<div class="inner">
 		<h2><?php _e('About', "roots"); ?> <?php the_author_posts_link(); ?></h2>
 		<div class="media">
@@ -30,7 +30,7 @@ $mimes = array(
 
 if(count($att) > 0){
 	?>
-<div id="single-bar" class="sidebar box">
+<div class="sidebar box">
 	<div class="inner">
 		<h2><?php _e('Attachments', "roots"); ?></h2>
 		<div class="entry-attachments media"><ul>
@@ -39,7 +39,7 @@ if(count($att) > 0){
 				$mime = explode("/", $a->post_mime_type);
 				$icon = isset($mimes[$mime[0]]) ? $mimes[$mime[0]] : $mimes["other"];
 				$title = apply_filters( 'the_title', $a->post_title );
-				$url = $a->ID ? wp_get_attachment_url($a->ID) : $a->guid; 
+				$url = isset($a->ID) ? wp_get_attachment_url($a->ID) : $a->guid;
 				
 				// Local urls should be converted to WP_Post. 
 				// If not: probably a thumbnail url, so skip that
@@ -53,3 +53,5 @@ if(count($att) > 0){
 	</div>
 </div>
 <?php } ?>
+
+<?php dynamic_sidebar('sidebar-posts'); ?>

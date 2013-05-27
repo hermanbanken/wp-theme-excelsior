@@ -3,11 +3,18 @@
  * Custom functions
  */
 $regexUrl = "/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/";
+define("ROOTS_MEDIACONTAINER_CACHE", "_roots_mediacontainer_cache");
 
 function roots_get_featured_media(){
+	global $wp_filter, $post;
+	
+	if($cache = get_post_meta(get_the_ID(), ROOTS_MEDIACONTAINER_CACHE, true)){
+		list($date, $value) = @split("|", $cache, 2);
+		if($date == get_the_modified_date("c"))
+			return $value;
+	}
 	
 	$content = get_the_content();
-	global $wp_filter; global $post;
 	
 	$classes = array("media-container", "shade");
 	$content = apply_filters('the_content', $content);	
@@ -138,7 +145,9 @@ function roots_get_featured_media(){
 			break;
 	}
 
-	return '<div class="'.implode(" ",$classes).'" data-name="'.get_the_title().'">'.$embed.'</div>';
+	$output = '<div class="'.implode(" ",$classes).'" data-name="'.get_the_title().'">'.$embed.'</div>';
+	update_post_meta(get_the_ID(), ROOTS_MEDIACONTAINER_CACHE, get_the_modified_date("c")."|".$output);
+	return $output;
 }
 
 /**
@@ -153,7 +162,7 @@ function roots_get_all_attachements(){
 	$uploads = wp_upload_dir();
 	
 	// Custom post + text urls
-	$custompostvalues = (array) array_filter(get_post_custom_values("_wp_format_media"));
+	$custompostvalues = (array) array_filter((array) get_post_custom_values("_wp_format_media"));
 	$urls = array_merge($custompostvalues, roots_get_urls(get_the_content()));
 	
 	// Load all old-school attachments

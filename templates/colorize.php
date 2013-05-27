@@ -27,4 +27,4 @@
 	body article.post-<?php the_ID(); ?> .inner .meta {
 		background-color: <?php echo $colorNeutralize; ?>;
 	}
-</style>
+</style>*/
