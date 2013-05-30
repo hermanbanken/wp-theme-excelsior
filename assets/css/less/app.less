@@ -71,10 +71,10 @@ input[type=search], input[type=text], input[type=password], input[type=submit], 
 	float: left;
 	width: 300px;
 	
-	> * { margin: 20px 10px 10px; }
+	#menu, .widget { margin: 20px 10px 10px; }
 	
 	#menu {
-		padding: 10px 30px;
+		padding: 10px 30px 30px;
 		margin-top: 0;
 		min-height: 300px;
 		background: @swatch-dark;
@@ -431,6 +431,7 @@ form#commentform {
 		}
 	}
 }
+.sidebar-menu-bottom .widget { margin-bottom: 20px; }
 .sub-menu { display: none; }
 .current-menu-ancestor > .sub-menu, .current-menu-item > .sub-menu { display: block; }
 
@@ -478,12 +479,18 @@ form#commentform {
 			color: white;
 			margin: 0 5px 5px 5px;
 			padding: 5px;
-			-webkit-transition:bottom .35s ease;
-				 -moz-transition:bottom .35s ease;
-					 -o-transition:bottom .35s ease;
-				 			transition:bottom .35s ease;
+			
+			max-height: 20px;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+			
+			-webkit-transition:max-height .35s ease;
+				 -moz-transition:max-height .35s ease;
+					 -o-transition:max-height .35s ease;
+				 			transition:max-height .35s ease;
 		}
-		&:hover .gallery-caption { bottom: -100%; }
+		&:hover .gallery-caption { white-space: normal; max-height: 100%;  }
 	}
 	&.gallery-columns-1 .gallery-item { width: 100%;  }
 	&.gallery-columns-2 .gallery-item { width: 50%; }
@@ -547,7 +554,7 @@ article .inner .media-container.gallery-preview {
 	.wrap { overflow: visible; }
 	
 	#columnleft { 
-		#menu { margin: 0; }
+		#menu { margin: 0 0 20px; }
 		
 		float: none;
 		width: auto;

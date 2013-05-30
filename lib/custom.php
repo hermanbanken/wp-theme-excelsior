@@ -9,7 +9,7 @@ function roots_get_featured_media(){
 	global $wp_filter, $post;
 	
 	if($cache = get_post_meta(get_the_ID(), ROOTS_MEDIACONTAINER_CACHE, true)){
-		list($date, $value) = @split("|", $cache, 2);
+		list($date, $value) = split("[|]", $cache, 2);
 		if($date == get_the_modified_date("c"))
 			return $value;
 	}
@@ -146,7 +146,10 @@ function roots_get_featured_media(){
 	}
 
 	$output = '<div class="'.implode(" ",$classes).'" data-name="'.get_the_title().'">'.$embed.'</div>';
-	update_post_meta(get_the_ID(), ROOTS_MEDIACONTAINER_CACHE, get_the_modified_date("c")."|".$output);
+	$s = add_post_meta( get_the_ID(), ROOTS_MEDIACONTAINER_CACHE, get_the_modified_date("c")."|".$output, true ) 
+		|| 
+	update_post_meta( get_the_ID(), ROOTS_MEDIACONTAINER_CACHE, get_the_modified_date("c")."|".$output );
+	var_dump($s); exit;
 	return $output;
 }
 

@@ -104,11 +104,12 @@ input[type=submit],
   float: left;
   width: 300px;
 }
-#columnleft > * {
+#columnleft #menu,
+#columnleft .widget {
   margin: 20px 10px 10px;
 }
 #columnleft #menu {
-  padding: 10px 30px;
+  padding: 10px 30px 30px;
   margin-top: 0;
   min-height: 300px;
   background: #48648e;
@@ -506,6 +507,9 @@ form#commentform p {
 #menu ul > li > ul > li.current-menu-item p::before {
   background-position: 0 -69px;
 }
+.sidebar-menu-bottom .widget {
+  margin-bottom: 20px;
+}
 .sub-menu {
   display: none;
 }
@@ -567,13 +571,18 @@ form#commentform p {
   color: white;
   margin: 0 5px 5px 5px;
   padding: 5px;
-  -webkit-transition: bottom .35s ease;
-  -moz-transition: bottom .35s ease;
-  -o-transition: bottom .35s ease;
-  transition: bottom .35s ease;
+  max-height: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-transition: max-height 0.35s ease;
+  -moz-transition: max-height 0.35s ease;
+  -o-transition: max-height 0.35s ease;
+  transition: max-height 0.35s ease;
 }
 .gallery .gallery-item:hover .gallery-caption {
-  bottom: -100%;
+  white-space: normal;
+  max-height: 100%;
 }
 .gallery.gallery-columns-1 .gallery-item {
   width: 100%;
@@ -671,7 +680,7 @@ article .inner .media-container.gallery-preview .control:hover i {
     padding-top: 10px;
   }
   #columnleft #menu {
-    margin: 0;
+    margin: 0 0 20px;
   }
   #columnleft header {
     position: relative;

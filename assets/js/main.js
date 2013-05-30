@@ -6,27 +6,30 @@
 $(window).on("load", function(){
 	$container = $('.articles');
 	
-	if ( $container.find("article").size() > 1 )
+	var options = {
+	  itemSelector: 'article, .box',
+		// set columnWidth a fraction of the container width
+		columnWidth: function( containerWidth ) {
+			var w = $container.find(".layout-archive, .box:not(.layout-single)").width();
+			//console.log("Width: ",w);
+			return w || 200;
+		
+			if ( containerWidth > 1000 )
+				return containerWidth / 5;
+			else if ( containerWidth > 800 )
+				return containerWidth / 4;
+			else if ( containerWidth > 600 )
+				return containerWidth / 3;
+			else
+				return 200;
+		}
+	};
+	
+	if ( $container.find("article, .box").size() > 1 )
 	{
 		$container.imagesLoaded(function(){
-			$container.masonry({
-			  itemSelector: 'article',
-				// set columnWidth a fraction of the container width
-				columnWidth: function( containerWidth ) {
-					var w = $container.find(".layout-archive").width();
-					console.log("Width: ",w);
-					return w || 200;
-					
-					if ( containerWidth > 1000 )
-						return containerWidth / 5;
-					else if ( containerWidth > 800 )
-						return containerWidth / 4;
-					else if ( containerWidth > 600 )
-						return containerWidth / 3;
-					else
-						return 200;
-				}
-			});
+			if(!$container.data( 'masonry' ))
+				$container.masonry(options);
 		});
 	}
 	
@@ -47,7 +50,15 @@ $(window).on("load", function(){
       $newElems.imagesLoaded(function(){
         // show elems now they're ready
         $newElems.animate({ opacity: 1 });
-        $container.masonry( 'appended', $newElems, true ); 
+				
+				// Setup if not yet set-up
+				if(!$container.data( 'masonry' )) 
+					$container.masonry(options);
+				else
+					$container.masonry( 'appended', $newElems, true );
+				
+				// make sure all content gets processed the same as when AJAX'ing
+				$(window).trigger("load");
       });
     }
   );
@@ -57,6 +68,10 @@ $(window).on("load", function(){
 $(window).on("resize load", function(e){
 	$(".media-container iframe").each(function(){
 		$(this).height(9 * $(this).width() / 16);
+	});
+	$(".layout-archive iframe:not(.media-container iframe)").each(function(){
+		var p = $(this).parents(".inner").width();
+		$(this).css("margin", "0 -15px 10px").width(p).height(9 * $(this).width() / 16);
 	});
 });
 
@@ -102,13 +117,13 @@ $(function(){
 		
 		if(provider == "facebook" && window.FB){
 			FB.login(function(response){
-				console.log(response);
+				//console.log(response);
 				if (response.authResponse) {
 					var sr = response.authResponse.signedRequest;
 					target.find('.with-user').append("<input type='hidden' name='facebook' value='"+sr+"' />");
 
 			  	FB.api('/me', function(user) {
-						console.log("/me", user);
+						//console.log("/me", user);
 						var logout = target.find(".logout").one("click", function(){
 							FB.logout();
 							target.find("[name=facebook]").remove();
@@ -120,7 +135,7 @@ $(function(){
 					});
 
 			  } else {
-					console.log('User cancelled login or did not fully authorize.');
+					//console.log('User cancelled login or did not fully authorize.');
 					target.removeClass("login-in-progress").append("<div class='warning'>Login failed</div>");
 			  }
 			}, {scope: 'email,user_likes'});
