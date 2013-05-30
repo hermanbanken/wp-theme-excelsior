@@ -9,7 +9,12 @@
 				<?php get_template_part('templates/part/menu'); ?>
 			</div>
 			
-			<?php dynamic_sidebar('sidebar-menu'); ?>
+			<div class="hidden-phone">
+				<?php 
+					ob_start();
+					dynamic_sidebar('sidebar-menu'); 
+					$_sb = ob_get_flush();
+				?></div>
 		</div>
 	
 		<div id="content" style="min-height: 300px;">
@@ -22,8 +27,10 @@
 	      <?php include roots_template_path(); ?>
 				<?php //include roots_sidebar_path(); ?>
 			</section>
-				
+
 		</div>
+
+		<div class="visible-phone sidebar-menu-bottom"><?php echo $_sb; ?></div>
 		<?php get_template_part('templates/part/footer'); ?>		
 	</div><!-- End of .wrap -->
 	
