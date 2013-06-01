@@ -25,6 +25,43 @@
 			</div>
 		<div>
 	</article>
+<?php elseif ((is_tax('event-venue') || is_post_type_archive('event')) && function_exists("eo_get_venue_map") && function_exists("eo_get_event_archive_date")) :?>
+	<article class="type-event-archive layout-single double box venue">
+		<div class="inner">
+			<header class="page-header">
+			  <h1><?php 
+					if( is_tax('event-venue') ){
+						echo __('Location', 'roots').': '; roots_title();
+					}
+					elseif( eo_is_event_archive('day') )
+						//Viewing date archive
+						echo __('Events: ','roots').' '.eo_get_event_archive_date('jS F Y');
+					elseif( eo_is_event_archive('month') )
+						//Viewing month archive
+						echo __('Events: ','roots').' '.eo_get_event_archive_date('F Y');
+					elseif( eo_is_event_archive('year') )
+						//Viewing year archive
+						echo __('Events: ','roots').' '.eo_get_event_archive_date('Y');
+					else
+						_e('Events','roots');
+				
+				?></h1>
+				<?php if(is_tax("event-venue")): ?><p><?php echo implode(", ", array_filter(eo_get_venue_address())); ?></p><?php endif; ?>
+			</header>
+			<?php
+				$venue = get_query_var('event-venue');
+				if(!$venue){
+					$venue = array();
+					$venues = eo_get_venues( );
+					foreach($venues as $v) $venue[] = $v->slug;
+				}
+				echo eo_get_venue_map($venue, array("class"=>"googlemaps media-container venue-map"));
+			?>
+			<div class="entry-content">
+				<?php echo eo_get_event_archive_link( 2015, 3); ?>
+			</div>
+		</div>
+	</article>
 <?php endif; ?>
 
 

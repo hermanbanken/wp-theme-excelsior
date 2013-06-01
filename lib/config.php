@@ -7,6 +7,7 @@ add_theme_support('rewrites');              // Enable URL rewrites
 add_theme_support('structured-post-formats', array('audio')); // Don't let the core do custom-post formatting; handle ourselves
 add_theme_support('nice-search');           // Enable /?s= to /search/ redirect
 add_theme_support('jquery-cdn');            // Enable to load jQuery from the Google CDN
+add_theme_support('post-formats', array( 'video', 'audio', 'gallery' ) );
 
 /**
  * Configuration values

@@ -138,6 +138,7 @@ add_filter('body_class', 'roots_body_class');
  * @author Scott Walkinshaw <scott.walkinshaw@gmail.com>
  */
 function roots_root_relative_url($input) {
+	if(strpos($input, site_url()) === false) return $input;
   $output = wp_make_link_relative($input);
   return $output;
 }
@@ -176,7 +177,9 @@ if (roots_enable_root_relative_urls()) {
  * @link http://www.readability.com/publishers/guidelines#publisher
  */
 function roots_embed_wrap($cache, $url, $attr = '', $post_ID = '') {
-  return '<div class="entry-content-asset">' . $cache . '</div>';
+  return '<div class="entry-content-asset">'.
+		'<img class="ratio-controller" src="'.get_template_directory_uri() . '/assets/img/transparent-16x9.png" />' . 
+		$cache . '</div>';
 }
 add_filter('embed_oembed_html', 'roots_embed_wrap', 10, 4);
 add_filter('embed_googlevideo', 'roots_embed_wrap', 10, 2);
@@ -474,3 +477,11 @@ function roots_get_search_form($argument) {
   }
 }
 add_filter('get_search_form', 'roots_get_search_form');
+
+/**
+ * Cleanup protected posts title. Replace word with lock symbol
+ */
+function roots_filter_title($title, $id) {
+	return preg_replace("/Protected:|Private:/", post_password_required($id) ? "<i class='icon-lock'></i>" : "<i class='icon-unlock-alt'></i>", $title);
+}
+add_filter('the_title', 'roots_filter_title', null, 2);

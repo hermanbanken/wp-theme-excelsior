@@ -1,24 +1,41 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class('box layout-single'); ?>>
   <div class="inner">
-		<header>
-			<date><?php
-				$start = get_post_meta($post->ID, "bc_event_start", true);
-				$end = get_post_meta($post->ID, "bc_event_end", true);
-				echo "<month>".date("M", $start)."</month><day>".date("d", $start)."</day>";
-			?></date>
-      <h1 class="entry-title"><?php the_title(); ?></h1>
-			<p><?php
-				echo date(__("F j, Y @ g:i a", 'roots'), $start) . " - " . date(date("Y-m-d", $start) == date("Y-m-d", $end) ? __("g:i a", 'roots') : __("F j, Y @ g:i a", 'roots'), $end);
-			?></p>
-    </header>
-    <div class="entry-content">
+		<?php get_template_part('templates/part/event-header'); ?>
+		<div class="entry-content">
+			<?php if(eo_reoccurs()): ?>
+				<div class='reoccurs alignright well'>
+					<?php
+					echo "<h4>".__("Next occurences:", 'roots')."</h4>";
+				  $occurrences = eo_get_the_occurrences_of();
+				  echo '<ul>';
+				 	$count = 5;
+				  foreach( $occurrences as $key => $occurrence) {
+						$diff = $occurrence['start']->diff(new DateTime());
+						if($diff->invert){
+ 							 if($count-- <= 0) break;
+							 printf( 
+						 		'<li><a href="%s">%s</a></li>',
+								get_permalink()."?occurrence=".$key, 
+						 		$diff->days < 7 ? 
+									roots_relative_date($occurrence['start']->getTimestamp()) : 
+									eo_format_datetime( $occurrence['start'] , __("F j, Y", 'roots') )
+							);
+						}
+					}
+				  echo '</ul>';
+					?>
+				</div>
+			<?php endif; ?>
       <?php the_content(); ?>
     </div>
     <footer>
       <?php wp_link_pages(array('before' => '<nav class="page-nav"><p>' . __('Pages:', 'roots'), 'after' => '</p></nav>')); ?>
       <?php the_tags('<ul class="entry-tags"><li>','</li><li>','</li></ul>'); ?>
     </footer>
-		<?php comments_template('/templates/comments.php'); ?>
+		
+		<div class="disqus">
+			<?php comments_template('/templates/comments.php'); ?>
+		</div>
 	</div>
 </article>
 
@@ -58,24 +75,19 @@ if(!empty($contact['name'])):
 <?php endif; ?>
 
 <?php
-$location = get_post_meta($post->ID, "bc_event_location", true);
-
-if(!empty($location['addr'])):
+if(eo_get_venue()):
 ?>
 <div class="sidebar box contact">
 	<div class="inner">
 		<h2><?php _e("Location", "roots"); ?></h2>
 		<div class="media">
 			<p>
-				<strong><?php echo $location['name'] ?></strong>
+				<strong><a href="<?php echo eo_get_venue_link(); ?>"><?php echo eo_get_venue_name() ?></a></strong>
 				<br>
-				<a href="http://maps.google.com/maps?q=<?php echo esc_attr($location['addr']); ?>">
-					<?php echo implode("<br>", explode(",", $location['addr'])); ?>
-				</a>
+				<?php echo implode("<br>", array_filter(eo_get_venue_address())); ?>
 			</p>
 		</div>
-		<div class="media-container googlemaps" data-googlemaps data-longitude='<?php echo $location['lon'] ?>' data-latitude='<?php echo $location['lat'] ?>'>
-		</div>
+		<?php echo eo_get_venue_map(null, array("class"=>"media-container googlemaps")); ?>
 	</div>
 </div>
 <?php endif; ?>

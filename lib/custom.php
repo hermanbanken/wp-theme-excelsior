@@ -5,8 +5,13 @@
 $regexUrl = "/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/";
 define("ROOTS_MEDIACONTAINER_CACHE", "_roots_mediacontainer_cache");
 
+/**
+ * Find media in posts and display
+ */
 function roots_get_featured_media(){
 	global $wp_filter, $post;
+	
+	if(post_password_required()) return;
 	
 	if($cache = get_post_meta(get_the_ID(), ROOTS_MEDIACONTAINER_CACHE, true)){
 		list($date, $value) = split("[|]", $cache, 2);
@@ -17,7 +22,7 @@ function roots_get_featured_media(){
 	$content = get_the_content();
 	
 	$classes = array("media-container", "shade");
-	$content = apply_filters('the_content', $content);	
+	//$content = apply_filters('the_content', $content);	
 	$embed = false;
 	
 	switch( get_post_format() )
@@ -25,7 +30,12 @@ function roots_get_featured_media(){
 		case 'video':
 		case 'audio':
 			// Directly defined video or audio, also find urls in post
-			$urls = array_unique(array_filter(array_merge(get_post_custom_values("_wp_format_media"), roots_get_urls($content))));
+			$urls = array(
+				(array) get_post_custom_values("_wp_format_media"),
+				(array) roots_get_urls($content)
+			);
+			$urls = array_unique(array_filter(call_user_func_array('array_merge', $urls)));
+			
 			if(($oembed = roots_get_first_embed($urls)) && ($embed = $oembed))
 				break;
 			
@@ -75,6 +85,7 @@ function roots_get_featured_media(){
 				$embed.= "</ul>";
 				break;
 			}
+			
 		case 'gallery':
 			// Display a gallery you can slide and stuff
 			$pattern = get_shortcode_regex();
@@ -146,10 +157,10 @@ function roots_get_featured_media(){
 	}
 
 	$output = '<div class="'.implode(" ",$classes).'" data-name="'.get_the_title().'">'.$embed.'</div>';
-	$s = add_post_meta( get_the_ID(), ROOTS_MEDIACONTAINER_CACHE, get_the_modified_date("c")."|".$output, true ) 
+	add_post_meta( get_the_ID(), ROOTS_MEDIACONTAINER_CACHE, get_the_modified_date("c")."|".$output, true ) 
 		|| 
 	update_post_meta( get_the_ID(), ROOTS_MEDIACONTAINER_CACHE, get_the_modified_date("c")."|".$output );
-	var_dump($s); exit;
+	
 	return $output;
 }
 

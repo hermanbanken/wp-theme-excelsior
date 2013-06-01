@@ -1,3 +1,4 @@
+<?php if(is_single()) :?>
 <div class="sidebar box">
 	<div class="inner">
 		<h2><?php _e('About', "roots"); ?> <?php the_author_posts_link(); ?></h2>
@@ -16,6 +17,7 @@
 		</div>
 	</div>
 </div>
+<?php endif; ?>
 
 <?php
 $att = roots_get_all_attachements();
@@ -54,4 +56,4 @@ if(count($att) > 0){
 </div>
 <?php } ?>
 
-<?php dynamic_sidebar('sidebar-posts'); ?>
+<?php if(is_single()) dynamic_sidebar('sidebar-posts'); else dynamic_sidebar('sidebar-pages'); ?>

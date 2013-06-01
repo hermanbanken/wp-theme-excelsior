@@ -7,10 +7,10 @@ $(window).on("load", function(){
 	$container = $('.articles');
 	
 	var options = {
-	  itemSelector: 'article, .box',
+	  itemSelector: 'article',
 		// set columnWidth a fraction of the container width
 		columnWidth: function( containerWidth ) {
-			var w = $container.find(".layout-archive, .box:not(.layout-single)").width();
+			var w = $container.find(".layout-archive").width();
 			//console.log("Width: ",w);
 			return w || 200;
 		
@@ -25,13 +25,13 @@ $(window).on("load", function(){
 		}
 	};
 	
-	if ( $container.find("article, .box").size() > 1 )
+	if ( $container.find("article").size() > 1 )
 	{
 		$container.imagesLoaded(function(){
 			if(!$container.data( 'masonry' ))
 				$container.masonry(options);
 		});
-	}
+	} else if($container.data( 'masonry' )) $container.masonry( 'destroy' );
 	
 	$container.infinitescroll({
     navSelector  : '.post-nav',    // selector for the paged navigation 
@@ -46,7 +46,8 @@ $(window).on("load", function(){
     function( newElements ) {
       // hide new items while they are loading
       var $newElems = $( newElements ).css({ opacity: 0 });
-      // ensure that images load before adding to masonry layout
+			$newElems.filter(":not(.layout-archive)").remove();
+			// ensure that images load before adding to masonry layout
       $newElems.imagesLoaded(function(){
         // show elems now they're ready
         $newElems.animate({ opacity: 1 });

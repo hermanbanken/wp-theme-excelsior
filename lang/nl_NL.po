@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Roots Theme\n"
-"POT-Creation-Date: 2013-05-24 22:49+0100\n"
+"POT-Creation-Date: 2013-06-01 23:03+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Roy Duineveld <roy@duineveld.me>\n"
 "Language-Team: Roy Duineveld <roy@duineveld.me>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "X-Generator: Poedit 1.5.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-KeywordsList: _e;__;_n\n"
+"X-Poedit-KeywordsList: _e;__;_n;_x:2c,1;_n:1,2\n"
 "X-Poedit-Basepath: /Users/herman/Projects/Wordpress/core/wp-content/themes/"
 "Excelsior_2013\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -37,11 +37,23 @@ msgstr "een verouderde link"
 msgid "Sorry, no posts were found."
 msgstr "Sorry, geen resultaten gevonden."
 
-#: index.php:43
+#: index.php:34 templates/single/event.php:82
+msgid "Location"
+msgstr "Locatie"
+
+#: index.php:38 index.php:41 index.php:44
+msgid "Events: "
+msgstr "Evenementen:"
+
+#: index.php:46
+msgid "Events"
+msgstr "Evenementen"
+
+#: index.php:80
 msgid "&larr; Older posts"
 msgstr "&larr; Oudere berichten"
 
-#: index.php:44
+#: index.php:81
 msgid "Newer posts &rarr;"
 msgstr "Nieuwste berichten &rarr;"
 
@@ -129,7 +141,7 @@ msgstr ""
 "bepaalde media bestanden. Deze bestanden zijn nog niet geïndexeerd. U kunt "
 "dit hier doen."
 
-#: lib/cleanup.php:353
+#: lib/cleanup.php:356
 msgid "Continued"
 msgstr "Vervolgd"
 
@@ -157,38 +169,144 @@ msgstr "Applicatie geheim"
 msgid "Primary Navigation"
 msgstr "Standaard Navigatie"
 
-#: lib/utils.php:60
+#: lib/utils.php:61
 msgid "Latest Posts"
 msgstr "Laatste berichten"
 
-#: lib/utils.php:69
+#: lib/utils.php:70
 #, php-format
 msgid "Daily Archives: %s"
 msgstr "Dagelijkse berichten: %s"
 
-#: lib/utils.php:71
+#: lib/utils.php:72
 #, php-format
 msgid "Monthly Archives: %s"
 msgstr "Maandelijkse berichten: %s"
 
-#: lib/utils.php:73
+#: lib/utils.php:74
 #, php-format
 msgid "Yearly Archives: %s"
 msgstr "Jaarlijkse berichten: %s"
 
-#: lib/utils.php:75
+#: lib/utils.php:76
 #, php-format
 msgid "Author Archives: %s"
 msgstr "Auteurs berichten: %s"
 
-#: lib/utils.php:80
+#: lib/utils.php:81
 #, php-format
 msgid "Search Results for %s"
 msgstr "Zoekresultaten voor %s"
 
-#: lib/utils.php:82
+#: lib/utils.php:83
 msgid "Not Found"
 msgstr "Niet gevonden"
+
+#: lib/utils.php:98
+msgid "now"
+msgstr "nu"
+
+#: lib/utils.php:104
+msgctxt "relative date"
+msgid "just now"
+msgstr "net"
+
+#: lib/utils.php:105
+msgctxt "relative date"
+msgid "1 minute ago"
+msgstr "een minuut geleden"
+
+#: lib/utils.php:106
+#, php-format
+msgctxt "relative date"
+msgid "%d minutes ago"
+msgstr "%d minuten geleden"
+
+#: lib/utils.php:107
+msgctxt "relative date"
+msgid "1 hour ago"
+msgstr "1 uur geleden"
+
+#: lib/utils.php:108
+#, php-format
+msgctxt "relative date"
+msgid "%d hours ago"
+msgstr "%d uren geleden"
+
+#: lib/utils.php:110
+msgctxt "relative date"
+msgid "yesterday"
+msgstr "gisteren"
+
+#: lib/utils.php:111
+#, php-format
+msgctxt "relative date"
+msgid "%d days ago"
+msgstr "%d dagen geleden"
+
+#: lib/utils.php:112
+#, php-format
+msgctxt "relative date"
+msgid "%d weeks ago"
+msgstr "%d weken geleden"
+
+#: lib/utils.php:113
+msgctxt "relative date"
+msgid "last month"
+msgstr "vorige maand"
+
+#: lib/utils.php:114 lib/utils.php:132
+#, fuzzy
+msgctxt "relative date"
+msgid "F j, Y"
+msgstr "j F Y"
+
+#: lib/utils.php:122
+msgctxt "relative date"
+msgid "in a minute"
+msgstr "over een minuut"
+
+#: lib/utils.php:123
+#, php-format
+msgctxt "relative date"
+msgid "in %d minutes"
+msgstr "over %d minuten"
+
+#: lib/utils.php:124
+msgctxt "relative date"
+msgid "in an hour"
+msgstr "over een uur"
+
+#: lib/utils.php:125
+#, php-format
+msgctxt "relative date"
+msgid "in %d hours"
+msgstr "over %d uren"
+
+#: lib/utils.php:127
+msgctxt "relative date"
+msgid "tomorrow"
+msgstr "morgen"
+
+#: lib/utils.php:128
+msgid "l"
+msgstr "l"
+
+#: lib/utils.php:129
+msgctxt "relative date"
+msgid "next week"
+msgstr "volgende week"
+
+#: lib/utils.php:130
+#, php-format
+msgctxt "relative date"
+msgid "in %d weeks"
+msgstr "over %d weken"
+
+#: lib/utils.php:131
+msgctxt "relative date"
+msgid "next month"
+msgstr "volgende maand"
 
 #: lib/widgets.php:8
 msgid "Primary Sidebar"
@@ -220,9 +338,11 @@ msgid "Edit"
 msgstr "Bewerken"
 
 #: templates/comments.php:8
-#, php-format
+#, fuzzy, php-format
 msgid "One Response to &ldquo;%2$s&rdquo;"
-msgstr "Een reactie op &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s Responses to &ldquo;%2$s&rdquo;"
+msgstr[0] "Een reactie op &ldquo;%2$s&rdquo;"
+msgstr[1] "Een reactie op &ldquo;%2$s&rdquo;"
 
 #: templates/comments.php:18
 msgid "&larr; Older comments"
@@ -262,7 +382,7 @@ msgstr "Log uit"
 msgid "Submit Comment"
 msgstr "Reactie toevoegen"
 
-#: templates/content-single.php:12 templates/single/bc_event.php:18
+#: templates/content-single.php:12 templates/single/event.php:32
 #: templates/single/post.php:11
 msgid "Pages:"
 msgstr "Pagina's:"
@@ -279,13 +399,34 @@ msgstr "Zoeken naar:"
 msgid "Search"
 msgstr "Zoeken"
 
-#: templates/archive/bc_event.php:11 templates/single/bc_event.php:11
+#: templates/archive/bc_event.php:11 templates/part/event-header.php:33
+#: templates/part/event-header.php:34
 msgid "F j, Y @ g:i a"
 msgstr "j M Y @ H:i"
 
-#: templates/archive/bc_event.php:11 templates/single/bc_event.php:11
+#: templates/archive/bc_event.php:11 templates/part/event-header.php:29
+#: templates/part/event-header.php:34
 msgid "g:i a"
 msgstr "H:i"
+
+#: templates/archive/post.php:12
+msgid "Tags"
+msgstr "Tags"
+
+#: templates/part/event-header.php:29
+msgid "from"
+msgstr "vanaf"
+
+#: templates/part/event-header.php:29
+msgid "until"
+msgstr "tot"
+
+#: templates/part/post-meta.php:14
+#, php-format
+msgid "1 Comment"
+msgid_plural "%d Comments"
+msgstr[0] "1 reactie"
+msgstr[1] "%d reacties"
 
 #: templates/part/single-bar.php:3
 msgid "About"
@@ -300,13 +441,21 @@ msgstr "Meer van %1$s"
 msgid "Attachments"
 msgstr "Bijlagen"
 
-#: templates/single/bc_event.php:33
+#: templates/single/event.php:8
+msgid "Next occurences:"
+msgstr "Volgende keren:"
+
+#: templates/single/event.php:21
+msgid "F j, Y"
+msgstr "j F Y"
+
+#: templates/single/event.php:50
 msgid "More Information"
 msgstr "Meer informatie"
 
-#: templates/single/bc_event.php:67
-msgid "Location"
-msgstr "Locatie"
+#~ msgctxt "relative date"
+#~ msgid "F Y"
+#~ msgstr "F Y"
 
 #~ msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
 #~ msgstr ""
@@ -332,9 +481,6 @@ msgstr "Locatie"
 
 #~ msgid "Website"
 #~ msgstr "Website"
-
-#~ msgid "Comment"
-#~ msgstr "Reactie"
 
 #~ msgid "Use to control playlists."
 #~ msgstr "Gebruik om afspeellijsten te bedienen."

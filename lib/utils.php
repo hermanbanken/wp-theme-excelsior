@@ -85,6 +85,53 @@ function roots_title() {
   }
 }
 
+/** 
+ * Relative date formatting
+ */
+function roots_relative_date($ts)
+{
+    if(!ctype_digit($ts))
+        $ts = strtotime($ts);
+
+    $diff = current_time('timestamp') - $ts;
+    if($diff == 0) return __('now', 'relative date', 'roots');
+    elseif($diff > 0)
+    {
+        $day_diff = floor($diff / 86400);
+        if($day_diff == 0)
+        {
+            if($diff < 60) return _x('just now', 'relative date', 'roots');
+            if($diff < 120) return _x('1 minute ago', 'relative date', 'roots');
+            if($diff < 3600) return sprintf(_x('%d minutes ago', 'relative date', 'roots'), floor($diff / 60));
+            if($diff < 7200) return _x('1 hour ago', 'relative date', 'roots');
+            if($diff < 86400) return sprintf(_x('%d hours ago', 'relative date', 'roots'), floor($diff / 3600));
+        }
+        if($day_diff == 1) return _x('yesterday', 'relative date', 'roots');
+        if($day_diff < 7) return sprintf(_x('%d days ago', 'relative date', 'roots'), $day_diff);
+        if($day_diff < 31) return sprintf(_x('%d weeks ago', 'relative date', 'roots'), ceil($day_diff / 7));
+        if($day_diff < 60) return _x('last month', 'relative date', 'roots');
+        return date(_x('F j, Y', 'relative date', 'roots'), $ts);
+    }
+    else
+    {
+        $diff = abs($diff);
+        $day_diff = floor($diff / 86400);
+        if($day_diff == 0)
+        {
+            if($diff < 120) return _x('in a minute', 'relative date', 'roots');
+            if($diff < 3600) return sprintf(_x('in %d minutes', 'relative date', 'roots'), floor($diff / 60));
+            if($diff < 7200) return _x('in an hour', 'relative date', 'roots');
+            if($diff < 86400) return sprintf(_x('in %d hours', 'relative date', 'roots'), floor($diff / 3600));
+        }
+        if($day_diff == 1) return _x('tomorrow', 'relative date', 'roots');
+        if($day_diff < 4) return date(__('l', 'relative date', 'roots'), $ts);
+        if($day_diff < 7 + (7 - date('w'))) return _x('next week', 'relative date', 'roots');
+        if(ceil($day_diff / 7) < 4) return sprintf(_x('in %d weeks', 'relative date', 'roots'), ceil($day_diff / 7));
+        if(date('n', $ts) == date('n') + 1) return _x('next month', 'relative date', 'roots');
+        return date(_x('F j, Y', 'relative date', 'roots'), $ts);
+    }
+}
+
 function add_filters($tags, $function) {
   foreach($tags as $tag) {
     add_filter($tag, $function);

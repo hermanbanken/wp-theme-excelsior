@@ -9,9 +9,7 @@
 		</div>
 		<div class='meta shade'>
 			<?php get_template_part('templates/entry-meta'); ?>
+		  <?php the_tags('<div class="entry-tags">'.__('Tags', 'roots').': 	<span>','</span>, <span>','</span></div>'); ?>
 		</div>
-		<footer>
-		  <?php the_tags('<ul class="entry-tags"><li>','</li><li>','</li></ul>'); ?>
-		</footer>
   </div>
 </article>

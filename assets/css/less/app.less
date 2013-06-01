@@ -233,8 +233,22 @@ article.layout-archive {
 	}
 }
 
+.postLinks {
+	margin: 0 0 15px;
+	overflow: hidden;
+	
+	li { 
+		list-style: none;
+		float: left;
+		margin-right: 20px;
+		font-size: 11px;
+	}
+}
+.layout-single .postLinks, .layout-single .postLinks a { color:#A9A9A9; } 
+.layout-single .postLinks li.category { text-transform: uppercase; font-weight: bold; }
+
 /* Comments layout */
-.inner.disqus { padding-top: 15px !important; }
+.disqus { margin: 25px; }
 
 #comments.inner, #respond.inner {
 	padding-top: 15px;
@@ -311,6 +325,25 @@ form#commentform {
 	background: white;
 	padding: 20px 30px;
 	margin-top: 10px;
+}
+
+.entry-tags li {
+	display: inline-block;
+	padding-right: .5em;
+}
+
+.venue-map { min-height: 200px; margin:0 -25px -10px; }
+.articles article.venue header { margin-bottom: 0; }
+.reoccurs ul { padding: 0; margin: 10px 15px 0; }
+
+.entry-content-asset {
+	position: relative;
+	margin-bottom: 15px;
+	
+	.ratio-controller {
+		width: 100%;
+	}
+	iframe { position: absolute; width: 100%; top: 0; left: 0; height: 100%; }
 }
 
 /* ==========================================================================

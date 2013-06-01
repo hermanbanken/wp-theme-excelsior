@@ -10,3 +10,4 @@
 		<?php endwhile; ?>
 	</div>
 </article>
+<?php get_template_part('templates/part/single-bar'); ?>
