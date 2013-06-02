@@ -1,4 +1,4 @@
-<?php if (function_exists("eo_get_venue_map") && function_exists("eo_get_event_archive_date")) :?>
+<?php if (function_exists("eo_get_venue_map") && function_exists("eo_get_event_archive_date")) : ?>
 	<article class="type-event-archive layout-single double box venue">
 		<div class="inner">
 			<header class="page-header">
@@ -21,13 +21,20 @@
 				?></h1>
 				<div class='controls pullright'>
 					<?php
+					
+					if(isset($_GET['view'])){
+						$view = $_SESSION['event_view'] = $_GET['view'];
+					} else {
+						$view = isset($_SESSION['event_view']) ? $_SESSION['event_view'] : 'list';
+					}
+					
 					$qv = get_query_var("ondate");
 					$date = str_replace("/", "-", $qv) . substr("0001-01-01", strlen($qv));
 					$selector = $qv ? explode("/", $qv) : array();
 					$disc = current(array_slice(array(false, "year", "month", "day"), count($selector), 1));
 					$format = array("Y", "Y-m", "Y-m-d");
 					
-					echo "<a href='#' title='Lijst'><span class='list'></span></a><a href='#' title='Maand'><span class='month'></span></a>";
+					echo "<a href='?view=list' title='Lijst'><span class='list'></span></a><a href='?view=month' title='Maand'><span class='month'></span></a>";
 					
 					// Make prev and next buttons, since we are in a date archive
 					if($disc){
@@ -39,7 +46,7 @@
 						echo "<a href=\"".call_user_func_array("eo_get_event_archive_link", explode("-", substr($nav['prev'][1], 0, strlen($qv))))."\" rel=\"prev\"><span class=\"prev\"></span></a>";
 					}
 					?>
-					<a href="<?php echo site_url(); ?>"><span class='back'></span></a>
+					<a href="<?php echo site_url(); ?>/events"><span class='back'></span></a>
 				</div>
 				<?php if(is_tax("event-venue")): ?><p><?php echo implode(", ", array_filter(eo_get_venue_address())); ?></p><?php endif; ?>
 			</header>
@@ -50,14 +57,16 @@
 					while(have_posts()): the_post();
 						 $venue[] = eo_get_venue_slug(get_the_ID());
 					endwhile;
+					$venue = array_unique($venue);
 					rewind_posts();
 				}
-				echo eo_get_venue_map(array_unique($venue), array("class"=>"googlemaps media-container venue-map"));
+				echo eo_get_venue_map($venue, array("class"=>"googlemaps media-container venue-map"));
 				global $wp_locale;
 			?>
 			
-			<?php if($disc == 'month'):
+			<?php if($view == 'month'):
 				$offset = 1;
+				if(!isset($selector[1])) $selector[1] = date("m");
 				
 				// Start date for month view
 				$start = strtotime("first " . $wp_locale->weekday[$offset] . " of " . substr($date, 0, 7));
@@ -93,7 +102,7 @@
 						while($event && date("Y-m-d", $current) == eo_get_the_start( "Y-m-d", $event->ID, null, $event->occurrence_id )){
 							echo "<div class='event'>".
 								"<span class='time'>".eo_get_the_start( "H:i", $event->ID, null, $event->occurrence_id )."</span> ".
-								get_the_title($event).
+								"<a href=\"".get_permalink($event->ID)."?occurrence=".$event->occurrence_id."\">".get_the_title($event->ID)."</a>".
 							"</div>";
 							if(next($events)) $event = current($events);
 							else break;
@@ -111,7 +120,7 @@
 	</article>
 <?php endif; ?>
 
-<?php if($disc != 'month'): while (have_posts()) : the_post(); ?>
+<?php if($view != 'month'): while (have_posts()) : the_post(); ?>
   <?php get_template_part('templates/colorize'); ?>
 	<?php locate_template(array(
 		"templates/archive/{$post->post_type}-".get_post_format().".php",

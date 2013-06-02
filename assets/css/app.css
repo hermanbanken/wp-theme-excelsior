@@ -453,6 +453,9 @@ form#commentform p {
   height: 75px;
   text-align: left;
 }
+.calendar-full table td a {
+  color: white;
+}
 .calendar-full table td.today {
   border-color: #e6db55;
   background: #ffffe0;

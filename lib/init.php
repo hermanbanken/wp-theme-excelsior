@@ -34,3 +34,12 @@ define('THEME_NAME',                next($get_theme_name));
 define('RELATIVE_PLUGIN_PATH',      str_replace(home_url() . '/', '', plugins_url()));
 define('RELATIVE_CONTENT_PATH',     str_replace(home_url() . '/', '', content_url()));
 define('THEME_PATH',                RELATIVE_CONTENT_PATH . '/themes/' . THEME_NAME);
+
+add_action('template_redirect', 'roots_event_view_fix');
+
+function roots_event_view_fix() {
+	// Forward
+	if(function_exists("eo_is_event_archive") && !eo_is_event_archive('month') && isset($_GET['view']) && $_GET['view'] == 'month'){
+		wp_redirect(eo_get_event_archive_link(date("Y"), date("m"))."?view=month");
+	}
+}

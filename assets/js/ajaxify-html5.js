@@ -166,9 +166,12 @@
 					// Add the scripts
 					$scripts.each(function(){
 						var $script = $(this), scriptText = this.innerHTML, scriptNode = document.createElement('script');
+						var src = $script.attr('src') || "";
 						
-						// For now, only recall DISQUS scripts
-						if(scriptText.indexOf("disqus") == -1 && scriptText.indexOf("EOAjaxFront") == -1) return;
+						// For now, only recall DISQUS and event-organiser scripts
+						if(src.indexOf("event-organiser") > -1 || src.indexOf("http://maps.googleapis.com") > -1){}
+						else
+						if(scriptText.indexOf("disqus") == -1 && scriptText.indexOf("eventorganiser") == -1) return;
 						
 						if ( $script.attr('src') ) {
 							if ( !$script[0].async ) { scriptNode.async = false; }

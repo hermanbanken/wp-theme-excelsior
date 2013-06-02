@@ -4,9 +4,12 @@
 			$oid = isset($_GET['occurrence']) ? $_GET['occurrence'] : '';
 		 	if(!empty($oid)){
 				$os = eo_get_the_occurrences_of();
-				if(isset($os[$oid])) $post->occurrence_id = $oid;
-				$o = $os[$_GET['occurrence']];
-			} else
+				if(isset($os[$oid])){
+					$post->occurrence_id = $oid;
+					$o = $os[$oid];
+				} 
+			} 
+			if(!isset($o))
 				$o = eo_get_next_occurrence_of($post->ID);
 			$month = $o['start']->format('M');
 			$day = $o['start']->format('d');
