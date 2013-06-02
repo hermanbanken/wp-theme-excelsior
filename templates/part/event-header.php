@@ -1,7 +1,7 @@
 <header>
 	<date><?php
 		if(eo_reoccurs() && !is_archive()) {
-			$oid = $_GET['occurrence'];
+			$oid = isset($_GET['occurrence']) ? $_GET['occurrence'] : '';
 		 	if(!empty($oid)){
 				$os = eo_get_the_occurrences_of();
 				if(isset($os[$oid])) $post->occurrence_id = $oid;

@@ -298,16 +298,65 @@ form#commentform {
 
 /* Event */
 .type-event, .type-bc_event {
+	@cal-bg: #3f72a6;
 	header p { font-weight: 600; }
 	date {
 		float: right; width: 50px; text-align: center; 
 		margin: 0 0 10px 10px;
-		background: #3f72a6;
+		background: @cal-bg;
 		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 		
 		month, day { text-transform: uppercase; display: block; }
-		month { font-size: 11px; background-color: rgba(255,255,255,0.2); letter-spacing: 4px; }
+		month { font-size: 11px; background-color: lighten(@cal-bg, 20%); letter-spacing: 4px; }
 		day { font-size: 29px; line-height: 40px; font-weight: bold; letter-spacing: 2px; }
+	}
+}
+.calendar-full {
+	margin: 10px -25px -10px;
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		table-layout: fixed;
+		
+		th {
+			background-color: #f1f1f1;
+			text-align: center;
+			#gradient > .vertical(#f9f9f9, #ececec);
+		}
+		td, th {
+			padding: 0 0.3em;
+			border-bottom: 1px solid #CCC;
+			width: 1/7*100%;
+			position: relative;
+			vertical-align: top;
+		}
+		td {
+			height: 75px;
+			text-align: left;
+			
+			&.today { 
+				border-color: #e6db55;
+				background: #ffffe0;
+			}
+			&.other-month .day { color: #ddd; }
+			
+			.day {
+				display: block;
+				text-align: right;
+			}
+			.event {
+				background: @swatch-dark;
+				color: white;
+				padding: 1px 4px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				.time { font-size: .8em; }
+			}
+		}
+		th+th, td+td {
+			border-left: 1px solid #CCC;
+		}
 	}
 }
 
