@@ -36,8 +36,10 @@ function roots_get_featured_media(){
 			);
 			$urls = array_unique(array_filter(call_user_func_array('array_merge', $urls)));
 			
-			if(($oembed = roots_get_first_embed($urls)) && ($embed = $oembed))
+			if($oembed = roots_get_first_embed($urls)){
+				$embed = '<img class="ratio-controller" src="'.get_template_directory_uri() . '/assets/img/transparent-16x9.png" />' . $oembed;
 				break;
+			}
 			
 			if(count($urls) > 0 && get_post_format() == 'audio'){
 				array_push($classes, "playlist");

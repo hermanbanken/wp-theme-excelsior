@@ -67,9 +67,9 @@ $(window).on("load", function(){
 
 // Change height of iFrames to always be 16:9
 $(window).on("resize load", function(e){
-	$(".media-container iframe").each(function(){
-		$(this).height(9 * $(this).width() / 16);
-	});
+	//$(".media-container iframe").each(function(){
+	//	$(this).height(9 * $(this).width() / 16);
+	//});
 	$(".layout-archive iframe:not(.media-container iframe)").each(function(){
 		var p = $(this).parents(".inner").width();
 		$(this).css("margin", "0 -15px 10px").width(p).height(9 * $(this).width() / 16);

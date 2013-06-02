@@ -163,24 +163,27 @@
 					}
 					catch ( Exception ) { }
 					
-					if(typeof eo_load_map !== 'undefined') eo_load_map();
-					
 					// Add the scripts
 					$scripts.each(function(){
 						var $script = $(this), scriptText = this.innerHTML, scriptNode = document.createElement('script');
 						
 						// For now, only recall DISQUS scripts
-						if(scriptText.indexOf("disqus") == -1) return;
+						if(scriptText.indexOf("disqus") == -1 && scriptText.indexOf("EOAjaxFront") == -1) return;
 						
 						if ( $script.attr('src') ) {
 							if ( !$script[0].async ) { scriptNode.async = false; }
 							scriptNode.src = $script.attr('src');
 						}
-    				scriptNode.appendChild(document.createTextNode(scriptText));
-						document.body.appendChild(scriptNode);
+    				try {
+							scriptNode.appendChild(document.createTextNode(scriptText));
+							document.body.appendChild(scriptNode);
+						} catch(e){
+							try { eval(scriptText); } catch(e){}
+						}
 					});
 					
-
+					if(typeof eo_load_map !== 'undefined') eo_load_map();
+					
 					// Complete the change
 					if ( $body.ScrollTo||false ) { $body.ScrollTo(scrollOptions); } /* http://balupton.com/projects/jquery-scrollto */
 					

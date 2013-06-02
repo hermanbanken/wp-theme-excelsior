@@ -37,6 +37,9 @@ if(count($att) > 0){
 		<h2><?php _e('Attachments', "roots"); ?></h2>
 		<div class="entry-attachments media"><ul>
 			<?php	
+			if(post_password_required()) {
+				_e('This post contains attachments. These are hidden due to password protection.', 'roots');
+			} else
 			foreach($att as $a){
 				$mime = explode("/", $a->post_mime_type);
 				$icon = isset($mimes[$mime[0]]) ? $mimes[$mime[0]] : $mimes["other"];

@@ -481,7 +481,7 @@ add_filter('get_search_form', 'roots_get_search_form');
 /**
  * Cleanup protected posts title. Replace word with lock symbol
  */
-function roots_filter_title($title, $id) {
+function roots_filter_title($title, $id = false) {
 	return preg_replace("/Protected:|Private:/", post_password_required($id) ? "<i class='icon-lock'></i>" : "<i class='icon-unlock-alt'></i>", $title);
 }
 add_filter('the_title', 'roots_filter_title', null, 2);

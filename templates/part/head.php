@@ -10,7 +10,7 @@
 	<!--[if IE 7]>
 	<link rel="stylesheet" href="<?php echo home_url(); ?>/assets/css/font-awesome-ie7.min.css">
 	<![endif]-->
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400italic,400,800,700|Oswald:400,700,300' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400italic,400,800,700|Oswald:400,700,300|PT+Sans:300' rel='stylesheet' type='text/css'>
 
   <?php wp_head(); ?>
 	

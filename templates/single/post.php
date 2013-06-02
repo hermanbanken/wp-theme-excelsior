@@ -2,6 +2,11 @@
   <div class="inner">
 		<header>
       <h1 class="entry-title"><?php the_title(); ?></h1>
+			<div class='controls pullright'>
+				<?php previous_post_link("%link", "<span class='prev'></span>")?>
+				<a href="<?php echo site_url(); ?>"><span class='back'></span></a>
+				<?php next_post_link("%link", "<span class='next'></span>")?>
+			</div>
     </header>
     <div class="entry-content">
       <?php get_template_part('templates/part/post-meta'); ?>
