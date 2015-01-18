@@ -1,69 +1,80 @@
 /* Author:
     Herman Banken
 */
+(function(){
+
+function columnWidth() {
+    var w = $container.find(".layout-archive").width();
+    return w || 200;
+}
+
+var masonryOptions = {
+  itemSelector: 'article',
+    // set columnWidth a fraction of the container width
+    columnWidth: columnWidth
+};
 
 // jQuery Masonry
 $(window).on("load", function(){
     $container = $('.articles');
     
-    var options = {
-      itemSelector: 'article',
-        // set columnWidth a fraction of the container width
-        columnWidth: function( containerWidth ) {
-            var w = $container.find(".layout-archive").width();
-            //console.log("Width: ",w);
-            return w || 200;
-        
-            if ( containerWidth > 1000 )
-                return containerWidth / 5;
-            else if ( containerWidth > 800 )
-                return containerWidth / 4;
-            else if ( containerWidth > 600 )
-                return containerWidth / 3;
-            else
-                return 200;
-        }
-    };
-    
+    // Archive page
     if ( $container.find("article").size() > 1 )
     {
         $container.imagesLoaded(function(){
-            if(!$container.data( 'masonry' ))
-                $container.masonry(options);
+            if(!$container.data( 'masonry' ) && document.body.clientWidth > 480)
+                $container.masonry(masonryOptions);
         });
-    } else if($container.data( 'masonry' )) $container.masonry( 'destroy' );
     
-    $container.infinitescroll('destroy');
-    $container.infinitescroll({
-        navSelector  : '.post-nav',    // selector for the paged navigation 
-        nextSelector : '.post-nav .previous a',  // selector for the NEXT link (to page 2)
-        itemSelector : '.box',     // selector for all items you'll retrieve
-        loading: {
-            finishedMsg: 'No more pages to load.',
-            img: 'http://i.imgur.com/6RMhx.gif'
-          }
-        },
-        // trigger Masonry as a callback
-        function( newElements ) {
-            // hide new items while they are loading
-            var $newElems = $( newElements ).css({ opacity: 0 });
-            $newElems.filter(":not(.layout-archive)").remove();
-            // ensure that images load before adding to masonry layout
-            $newElems.imagesLoaded(function(){
-                // show elems now they're ready
-                $newElems.animate({ opacity: 1 });
-                        
-                // Setup if not yet set-up
-                if(!$container.data( 'masonry' )) 
-                    $container.masonry(options);
-                else
-                    $container.masonry( 'appended', $newElems, true );
-                
-                // make sure all content gets processed the same as when AJAX'ing
-                $(window).trigger("load");
-            });
-        }
-    );
+        $container.infinitescroll({
+            navSelector  : '.post-nav',    // selector for the paged navigation 
+            nextSelector : '.post-nav .previous a',  // selector for the NEXT link (to page 2)
+            itemSelector : '.box',     // selector for all items you'll retrieve
+            loading: {
+                finishedMsg: 'No more pages to load.',
+                img: 'http://i.imgur.com/6RMhx.gif'
+              }
+            },
+            // trigger Masonry as a callback
+            function( newElements ) {
+                // hide new items while they are loading
+                var $newElems = $( newElements ).css({ opacity: 0 });
+                $newElems.filter(":not(.layout-archive)").remove();
+                // ensure that images load before adding to masonry layout
+                $newElems.imagesLoaded(function(){
+                    // show elems now they're ready
+                    $newElems.animate({ opacity: 1 });
+                            
+                    // Setup if not yet set-up
+                    if(!$container.data( 'masonry' )) 
+                        $container.masonry(masonryOptions);
+                    else
+                        $container.masonry( 'appended', $newElems, true );
+                    
+                    // make sure all content gets processed the same as when AJAX'ing
+                    $(window).trigger("load");
+                });
+            }
+        );
+
+    } 
+    // No archive page
+    else {
+        if($container.data( 'masonry' )) 
+            $container.masonry( 'destroy' );
+        $container.infinitescroll('destroy');
+    }
+});
+
+// Disable masonry if screen is smaller than 480
+$(window).on("resize", function(e){
+    // On resize: disable 
+    $container = $('.articles');
+    if(document.body.clientWidth <= 480 && $container.data( 'masonry' )){
+        $container.masonry( 'destroy' );
+    } else if(!$container.data( 'masonry' )) {
+        $container.masonry(masonryOptions);
+    }
 });
 
 $(window).on("load", function(){
@@ -140,14 +151,10 @@ $(window).on("load", function(e){
 /* Menu toggler for lower screen sizes */
 $(function(){
     $(document.body).on("click", "#menu-toggle a", function(){
-        if($(this).closest("li").hasClass("current-menu-item")){
-            $(this).text("Open menu");
-            $(this.getAttribute('href')).addClass("hidden-phone");
-        } else {
-            $(this).text("Verberg menu");
-            $(this.getAttribute('href')).removeClass("hidden-phone");
-        }
-        $(this).closest("li").toggleClass("current-menu-item");
+        var isOpen = !$(this).closest("li").hasClass("current-menu-item");
+        $(this).text(isOpen ? "Verberg menu" : "Open menu");
+        $(this.getAttribute('href')).toggleClass("hidden-phone", !isOpen);
+        $(this).closest("li").toggleClass("current-menu-item", isOpen);
     });
 });
 
@@ -190,3 +197,5 @@ $(function(){
         }
     });
 });
+
+})();
