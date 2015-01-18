@@ -136,6 +136,20 @@ $(window).on("load", function(e){
 	});
 });
 
+/* Menu toggler for lower screen sizes */
+$(function(){
+	$(document.body).on("click", "#menu-toggle a", function(){
+		if($(this).closest("li").hasClass("current-menu-item")){
+			$(this).text("Open menu");
+			$(this.getAttribute('href')).addClass("hidden-phone");
+		} else {
+			$(this).text("Verberg menu");
+			$(this.getAttribute('href')).removeClass("hidden-phone");
+		}
+		$(this).closest("li").toggleClass("current-menu-item");
+	});
+});
+
 $(function(){
 	$(document.body).on("submit", "#commentform",function(){
 		if($(this).find("[name=facebook]").val()) {

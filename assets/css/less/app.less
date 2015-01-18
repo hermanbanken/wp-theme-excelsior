@@ -1,3 +1,9 @@
+/*!
+ * Excelsior Woerden 2012 theme
+ *
+ * Designed and built by @hermanbanken for Fanfarecorps Excelsior Woerden.
+ */
+
 @swatch-accent: #02b09b; /* Green */
 @swatch-dark: #48648e; /* Darkest blue */
 @swatch-normal: #8c9bbc; /* Blue */
@@ -74,7 +80,7 @@ input[type=search], input[type=text], input[type=password], input[type=submit], 
 	#menu, .widget { margin: 20px 10px 10px; }
 	
 	#menu {
-		padding: 10px 30px 30px;
+		padding: 10px 20px 20px;
 		margin-top: 0;
 		min-height: 300px;
 		background: @swatch-dark;
@@ -463,7 +469,7 @@ form#commentform {
 	
 	ul.menu {
 		margin-top: 20px;
-		margin-left: -30px;
+		margin-left: -20px;
 		
 		& > li > p a {
 			font-family: "Helvetica";
@@ -503,7 +509,7 @@ form#commentform {
 			p a:hover, &.current-menu-item > p > a {
 				background: url(../img/sprites.png) no-repeat lighten(@swatch-dark, 15%);
 				background-position: -135px -32px;
-				margin-right: -15px;
+				margin-right: -5px;
 				text-decoration: none;
 			}
 			&.current-menu-item > p > a {
@@ -537,6 +543,7 @@ form#commentform {
 		}
 	}
 }
+.sidebar-menu-bottom { clear: left; }
 .sidebar-menu-bottom .widget { margin-bottom: 20px; }
 .sub-menu { display: none; }
 .current-menu-ancestor > .sub-menu, .current-menu-item > .sub-menu { display: block; }
@@ -674,7 +681,12 @@ article .inner .media-container.gallery-preview {
 	.wrap { overflow: visible; }
 	
 	#columnleft { 
-		#menu { margin: 0 0 20px; }
+		#menu {
+			min-height: initial;
+			margin: 0 0 20px; padding: 10px 20px 20px; 
+			ul.menu { margin-left: -20px; }
+			ul li { padding-left: 20px; }
+		}
 		
 		float: none;
 		width: auto;
@@ -697,14 +709,43 @@ article .inner .media-container.gallery-preview {
 		
 		div ul li.current-menu-item > p > a, div ul li p:hover > a {
 			background-image: none;
-			margin-right: -30px;
+			margin-right: -20px;
 		}
 	}
 	section.quick-bar { margin: 20px 0 0; }
 	#content { margin-left: inherit; margin-right: inherit; }
+
+	/* Increase menu button size */
+	#menu ul li p { height: 41px; line-height: 42px; }
 }
+
 @media (max-width: 480px) { 
 	body .box { width: 100%; }
+
+	/* Decrease single-page padding */
+	article.layout-single .inner {
+		header {
+			padding: 12px 25px;
+			h1 { font-size: 24px; font-size: 24px; line-height: 24px; }
+		}
+		.entry-content { padding: 0; overflow-x: auto; }
+		.disqus { margin: 0; }
+	}
+	/* Decrease body borders */
+	#columnleft { margin: 0; padding: 0; }
+	#columnleft #menu { margin: 0 0 20px; padding: 10px 20px 20px; }
+	body { padding-left: 0; padding-right: 0; }
+	body section.articles,
+	body .box .inner, body article .inner {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.wrap { margin: 0 auto 10px; }
+
+	/* Increase button distance */
+	.entry-taxonomies.entry-tags { display: none; }
+	/*.entry-taxonomies.entry-tags { display: inline; }
+	.entry-taxonomies.entry-tags:before { content: "in"; } */
 }
 @media (min-width: 979px) {
 	article.layout-archive { width: 33%; &.double { width: 66%; } }

@@ -51,6 +51,7 @@
 			
 			// Check link
 			isInternalLink = url.indexOf("wp-admin") < 0 && url.substring(0,rootUrl.length) === rootUrl || url.indexOf(':') === -1;
+			isInternalLink = url.indexOf("#") != 0 && isInternalLink;
 			
 			// Ignore or Keep
 			return isInternalLink;

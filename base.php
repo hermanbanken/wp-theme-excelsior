@@ -1,7 +1,7 @@
 <?php get_template_part('templates/part/head'); ?>
 <body <?php body_class(); ?>>
 
-	<div class="feedback box">
+	<div class="feedback box hidden-phone">
 		<!-- The Classic Widget will be embeded wherever this div is placed -->
 		<div class="message">
 			<p>Deze website is nieuw en is nog niet helemaal klaar. We ontvangen graag uw feedback om de site te verbeteren: <a href="http://bluecode.uservoice.com/">geef feedback</a></p>
