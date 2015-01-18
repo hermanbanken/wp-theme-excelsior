@@ -84,7 +84,7 @@
 					title = $this.attr('title')||null;
 					
 				// Continue for files
-				if ( url.indexOf("/assets/") >= 0 ) { return true; }
+				if ( url.indexOf("/assets/") >= 0 || /\.[a-z0-9]{2,4}$/.test(url) ) { return true; }
 				
 				// Continue as normal for cmd clicks etc
 				if ( event.which == 2 || event.metaKey ) { return true; }
@@ -163,6 +163,10 @@
 					}
 					catch ( Exception ) { }
 					
+					// Update the body classes
+					$body.attr("class", $dataBody.removeClass("document-body").attr('class')).removeClass('loading');
+					$window.trigger(completedEventName).trigger("load");
+					
 					// Add the scripts
 					$scripts.each(function(){
 						var $script = $(this), scriptText = this.innerHTML, scriptNode = document.createElement('script');
@@ -185,15 +189,11 @@
 						}
 					});
 					
-					if(typeof eo_load_map !== 'undefined') eo_load_map();
-					
 					// Complete the change
 					if ( $body.ScrollTo||false ) { $body.ScrollTo(scrollOptions); } /* http://balupton.com/projects/jquery-scrollto */
 					
-					// Update the body classes
-					$body.attr("class", $dataBody.removeClass("document-body").attr('class')).removeClass('loading');
-					$window.trigger(completedEventName).trigger("load");
-	
+					if(typeof eo_load_map !== 'undefined') eo_load_map();
+					
 					// Inform Google Analytics of the change
 					if ( typeof window._gaq !== 'undefined' ) {
 						window._gaq.push(['_trackPageview', relativeUrl]);

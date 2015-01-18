@@ -19,10 +19,10 @@ foreach($_GET as $slug => $color){
 		$colorInv = $color->invertLargest();
 ?>
 /* Custom colors for: <?php echo $slug; ?> */
-<?php echo $body; ?> article.category-<?php echo $slug; ?> .inner a {	color: <?php echo $colorLink; ?>; font-weight: bold; }
-<?php echo $body; ?> article.category-<?php echo $slug; ?> .inner { background-color: <?php echo $color; ?>; color: <?php echo $colorText; ?>; }
-<?php echo $body; ?> article.category-<?php echo $slug; ?> .inner header a { color: <?php echo $colorText; ?>; font-weight: 300; }
-<?php echo $body; ?> article.category-<?php echo $slug; ?> .inner .shade { background-color: <?php echo $colorNeutralize; ?>; }
+<?php echo $body; ?> article.layout-archive.category-<?php echo $slug; ?> .inner a {	color: <?php echo $colorLink; ?>; font-weight: bold; }
+<?php echo $body; ?> article.layout-archive.category-<?php echo $slug; ?> .inner { background-color: <?php echo $color; ?>; color: <?php echo $colorText; ?>; }
+<?php echo $body; ?> article.layout-archive.category-<?php echo $slug; ?> .inner header a { color: <?php echo $colorText; ?>; font-weight: 300; }
+<?php echo $body; ?> article.layout-archive.category-<?php echo $slug; ?> .inner .shade { background-color: <?php echo $colorNeutralize; ?>; }
 <?php }
 }
 

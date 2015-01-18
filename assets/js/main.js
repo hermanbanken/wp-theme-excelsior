@@ -65,14 +65,42 @@ $(window).on("load", function(){
   );
 });
 
+$(window).on("load", function(){
+	// Restore lightbox
+	if(typeof doLightBox !== 'undefined' && typeof jQuery !== 'undefined'){ doLightBox(); }
+});
+
+
 // Change height of iFrames to always be 16:9
 $(window).on("resize load", function(e){
 	//$(".media-container iframe").each(function(){
 	//	$(this).height(9 * $(this).width() / 16);
 	//});
 	$(".layout-archive iframe:not(.media-container iframe)").each(function(){
-		var p = $(this).parents(".inner").width();
-		$(this).css("margin", "0 -15px 10px").width(p).height(9 * $(this).width() / 16);
+		var p = $(this).closest(".inner").outerWidth();
+		$(this).css("margin", "0 -15px 10px").width(p).height(9 * p / 16);
+	});
+});
+
+$(window).on("ready", function(){
+	// UserVoice JavaScript SDK (only needed once on a page)
+	(function(){
+		var uv=document.createElement('script');
+		uv.type='text/javascript';
+		uv.async=true;uv.src='//widget.uservoice.com/g32q7nFq1DGROjRp8kjxkQ.js';
+		var s=document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(uv,s)
+	})();
+	
+	$(".feedback a").on("click", function(){
+		if($(".feedback .inner").is(':hidden')){
+			$(".feedback .inner").show();
+			$(".feedback p a").text("sluit feedback dialoog");
+		} else {
+			$(".feedback .inner").hide();
+			$(".feedback p a").text("geef feedback");
+		}
+		return false;
 	});
 });
 
@@ -80,7 +108,11 @@ $(window).on("resize load", function(e){
 $(window).on("load", function(e){
 	$(".media-container.gallery-preview").each(function(){
 		var i = 0, gallery = $(this);
-				
+		
+		gallery.on("click", ".ratio-controller, .full", function(){
+			gallery.find(".image").slice(i, i+1).closest("a").trigger("click");
+		});
+		
 		function update(i){
 			var url = gallery.find(".image").slice(i, i+1).attr('src');
 			gallery.find(".ratio-controller").css("backgroundImage", "url("+url+")");
@@ -88,12 +120,12 @@ $(window).on("load", function(e){
 				
 		update(0);
 		//gallery.find("img").first().show();
-		gallery.on("click", ".next", function(){ 
+		gallery.on("click", ".next i", function(){ 
 			//var c = gallery.find("img:visible");
 			if(i+1 < gallery.find(".image").size())
 				update(++i);
 			return false;
-		}).on("click", ".prev", function(){ 
+		}).on("click", ".prev i", function(){ 
 			//var c = gallery.find("img:visible");
 			if(i-1 >= 0)
 				update(--i);

@@ -91,6 +91,19 @@ input[type=submit],
   background: #8c9bbc;
   color: white;
 }
+table {
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+}
+table td,
+table th {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+}
 /* ==========================================================================
    Structure
    ========================================================================== */
@@ -240,13 +253,13 @@ article.layout-single .inner header .controls > a .list {
   background-image: url("../img/sprites.png");
 }
 article.layout-single .inner header .controls > a .prev {
-  background-position: -31px -92px;
+  background-position: 0px -92px;
 }
 article.layout-single .inner header .controls > a .back {
   background-position: -62px -92px;
 }
 article.layout-single .inner header .controls > a .next {
-  background-position: 0px -92px;
+  background-position: -31px -92px;
 }
 article.layout-single .inner header .controls > a .list {
   background-position: -91px -92px;
@@ -582,6 +595,11 @@ form#commentform p {
   color: white;
   padding-bottom: 20px;
 }
+#menu a {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
 #menu header h1 {
   margin: 12px 0 2px 0;
 }
@@ -701,6 +719,18 @@ form#commentform p {
 /* ==========================================================================
    Custom elements / object / sections
    ========================================================================== */
+body .feedback {
+  margin-top: 10px;
+  width: 100%;
+  float: none;
+  text-align: center;
+}
+body .feedback .inner {
+  display: none;
+  background: #48648e;
+  background: white;
+  box-shadow: 0 0 15px #555;
+}
 .layout-single .gallery {
   margin: 0 -4px 15px;
   padding: 0;
@@ -744,7 +774,7 @@ form#commentform p {
 }
 .gallery .gallery-item:hover .gallery-caption {
   white-space: normal;
-  max-height: 100%;
+  max-height: 70%;
 }
 .gallery.gallery-columns-1 .gallery-item {
   width: 100%;
@@ -778,41 +808,58 @@ figure.thumbnail {
 article .inner .media-container.gallery-preview {
   background: black;
   position: relative;
+  color: white;
+}
+article .inner .media-container.gallery-preview a {
+  color: white !important;
 }
 article .inner .media-container.gallery-preview .ratio-controller {
   background-size: cover;
   background-position: 50% 40%;
+  cursor: pointer;
 }
 article .inner .media-container.gallery-preview .control {
   position: absolute;
-  top: 0;
-  width: 30%;
-  height: 100%;
+  right: 0;
+  bottom: 0;
+  width: 32px;
+  height: 32px;
 }
-article .inner .media-container.gallery-preview .control:hover {
-  opacity: 1;
-}
-article .inner .media-container.gallery-preview .control.next,
-article .inner .media-container.gallery-preview .control.next i {
+article .inner .media-container.gallery-preview .control.next {
   right: 0;
 }
-article .inner .media-container.gallery-preview .control.prev,
-article .inner .media-container.gallery-preview .control.prev i {
-  left: 0;
+article .inner .media-container.gallery-preview .control.prev {
+  right: 68px;
+}
+article .inner .media-container.gallery-preview .control.full {
+  right: 34px;
+  width: 32px;
+  height: 32px;
 }
 article .inner .media-container.gallery-preview .control i {
   width: 32px;
   height: 32px;
   text-align: center;
   line-height: 32px;
-  opacity: 0;
+  opacity: .7;
   background: #555;
   position: absolute;
+  cursor: pointer;
   bottom: 0;
   -webkit-transition: opacity .35s ease;
   -moz-transition: opacity .35s ease;
   -o-transition: opacity .35s ease;
   transition: opacity .35s ease;
+}
+article .inner .media-container.gallery-preview .control.full i {
+  opacity: .7;
+  width: 32px;
+  height: 32px;
+  background: no-repeat url('../img/sprites.png');
+  background-position: -272px -64px;
+}
+article .inner .media-container.gallery-preview:hover .control.full i {
+  opacity: 1;
 }
 article .inner .media-container.gallery-preview .control:hover i {
   opacity: 1;
@@ -869,6 +916,9 @@ article .inner .media-container.gallery-preview .control:hover i {
   #content {
     margin-left: inherit;
     margin-right: inherit;
+  }
+  body {
+    padding: inherit 10px;
   }
 }
 @media (max-width: 480px) {

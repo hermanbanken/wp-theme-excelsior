@@ -12,7 +12,7 @@ add_theme_support('post-formats', array( 'video', 'audio', 'gallery' ) );
 /**
  * Configuration values
  */
-define('GOOGLE_ANALYTICS_ID', ''); // UA-XXXXX-Y
+define('GOOGLE_ANALYTICS_ID', 'UA-3854592-2'); // UA-XXXXX-Y
 define('POST_EXCERPT_LENGTH', 40);
 
 /**

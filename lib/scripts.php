@@ -79,7 +79,7 @@ function roots_google_analytics() { ?>
 <script>
   var _gaq=[['_setAccount','<?php echo GOOGLE_ANALYTICS_ID; ?>'],['_trackPageview']];
   (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    g.src='//stats.g.doubleclick.net/dc.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>
 <?php }

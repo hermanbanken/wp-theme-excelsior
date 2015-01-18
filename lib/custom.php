@@ -19,6 +19,7 @@ function roots_get_featured_media(){
 			return $value;
 	}
 	
+	$time_start = microtime(true);
 	$content = get_the_content();
 	
 	$classes = array("media-container", "shade");
@@ -121,16 +122,19 @@ function roots_get_featured_media(){
 					$embed = "<img class='ratio-controller' src='".get_template_directory_uri() . '/assets/img/transparent-16x9.png'."' style='width:100%;background-image:url($first)' />";
 					foreach($images as $img){
 						$style = array("style"=>"display:none");
-						$embed .= wp_get_attachment_image( $img->ID, 'medium', true, array("class"=>"image") + $style );
+						$src = wp_get_attachment_image_src( $img->ID, 'full', false );
+						$embed .= "<a rel='lightbox[$post->ID]' href=\"".esc_attr($src[0])."\">".wp_get_attachment_image( $img->ID, 'medium', false, array("class"=>"image") + $style )."</a>";
 					}
-					$embed .= "<a class='prev control'><i class='icon-chevron-left'></i></a><a class='next control'><i class='icon-chevron-right'></i></a>";
+					$embed .= "<a class='full control'><i class='icon-zoom'></i></a><a class='prev control'><i class='icon-chevron-left'></i></a><a class='next control'><i class='icon-chevron-right'></i></a>";
 					break;
 				}
 			}
 		default:
 			// Use thumbnail if available
-			if(has_post_thumbnail())
-				 $embed = '<div class="media-container">'.get_the_post_thumbnail('medium').'</div>';
+			if(has_post_thumbnail()){
+				$href = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full', false );
+			 	$embed = "<a rel=\"lightbox[$post->ID]\" href=\"$href[0]\">".get_the_post_thumbnail('medium')."</a>";
+			}
 			
 			// Look up possible attachments
 			$args = array(
@@ -142,23 +146,17 @@ function roots_get_featured_media(){
 			$images =& get_children( $args + array("post_mime_type" => "image") );
 			if(count($images) > 0){
 				$att = current($images);
-				list($src, $w, $h) = wp_get_attachment_image_src( $att->ID, 'medium' );
-				$embed = "<img src='".$src."' width='".$w."' height='".$h."' />";
+				$href = wp_get_attachment_image_src( $att->ID, 'full', false );
+			 	list($src, $w, $h) = wp_get_attachment_image_src( $att->ID, 'medium' );
+				$embed = "<a rel=\"lightbox[$post->ID]\" href='".$href[0]."'><img src='".$src."' width='".$w."' height='".$h."' /></a>";
 				break;
 			}
-			$videos =& get_children( $args + array("post_mime_type" => "video") );
-			if(count($videos) > 0){
-				$att = current($videos);
-				$embed = "<video></video>";
-				break;
-			}
-			if(count($images) + count($videos) > 0)
-				echo "<pre>".print_r($images + $videos, 1)."</pre>";
 			
 			break;
 	}
 
-	$output = '<div class="'.implode(" ",$classes).'" data-name="'.get_the_title().'">'.$embed.'</div>';
+	$debug = "<!-- media container generated in: ".(microtime(true) - $time_start)."-->";
+	$output = $debug.'<div class="'.implode(" ",$classes).'" data-name="'.get_the_title().'">'.$embed.'</div>';
 	add_post_meta( get_the_ID(), ROOTS_MEDIACONTAINER_CACHE, get_the_modified_date("c")."|".$output, true ) 
 		|| 
 	update_post_meta( get_the_ID(), ROOTS_MEDIACONTAINER_CACHE, get_the_modified_date("c")."|".$output );
@@ -283,8 +281,7 @@ add_filter('embed_oembed_html','roots_filter_oembed_result', 10, 3);
 function roots_filter_oembed_result($html, $url, $args) {
 
 	if(strpos($html, "youtube") >= 0 || strpos($html, "youtu.be") >= 0){
-		// Remove sizes
-		$html = preg_replace("/width=\"(?<w>\d+)\"|height=\"(?<h>\d+)\"/", "", $html);
+		$html = roots_strip_embed($html);
 	}
   return $html; 
 }
