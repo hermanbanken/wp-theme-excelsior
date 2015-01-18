@@ -15,9 +15,7 @@
  * 4. /theme/assets/js/main.js    (in footer)
  */
 function roots_scripts() {
-  wp_enqueue_style('roots_bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.css', false, null);
-  wp_enqueue_style('roots_bootstrap_responsive', get_template_directory_uri() . '/assets/css/bootstrap-responsive.css', array('roots_bootstrap'), null);
-  wp_enqueue_style('roots_app', get_template_directory_uri() . '/assets/css/app.css', false, null);
+  wp_enqueue_style('roots_app', get_template_directory_uri() . '/assets/css/main.css', false, null);
 
   // Load style.css from child theme
   if (is_child_theme()) {
@@ -37,18 +35,11 @@ function roots_scripts() {
     wp_enqueue_script('comment-reply');
   }
 
-  wp_register_script('modernizr', get_template_directory_uri() . '/assets/js/vendor/modernizr-2.6.2.min.js', false, null, false);
-  wp_register_script('roots_plugins', get_template_directory_uri() . '/assets/js/plugins.js', false, null, true);
-	wp_register_script('History.js', "//browserstate.github.io/history.js/scripts/bundled/html4+html5/jquery.history.js", array('jquery'), null, true);
-	wp_register_script('Ajaxify', get_template_directory_uri() . '/assets/js/ajaxify-html5.js', array('jquery', 'History.js'), null, true);
-	wp_register_script('roots_main', get_template_directory_uri() . '/assets/js/main.js', array(
-  	"roots_plugins",
+  wp_register_script('roots_main', get_template_directory_uri() . '/assets/js/excelsior.min.js', array(
 		"jquery",
-		"modernizr"
   ), null, true);
 	
   wp_enqueue_script('roots_main');
-	wp_enqueue_script('Ajaxify');
 }
 function roots_admin_scripts() {
 	wp_enqueue_style( 'wp-color-picker' );

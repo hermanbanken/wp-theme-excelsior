@@ -171,7 +171,7 @@ $(function(){
 
 			  	FB.api('/me', function(user) {
 						//console.log("/me", user);
-						var logout = target.find(".logout").one("click", function(){
+						target.find(".logout").one("click", function(){
 							FB.logout();
 							target.find("[name=facebook]").remove();
 							target.removeClass('loggedin');
