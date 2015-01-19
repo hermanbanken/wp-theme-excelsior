@@ -1,17 +1,10 @@
-/* Author:
-    Herman Banken
-*/
 (function(){
-
-function columnWidth() {
-    var w = $container.find(".layout-archive").width();
-    return w || 200;
-}
+/* Author: Herman Banken */
 
 var masonryOptions = {
   itemSelector: 'article',
-    // set columnWidth a fraction of the container width
-    columnWidth: columnWidth
+  // set columnWidth a fraction of the container width
+  columnWidth: ".layout-archive:not(.double)",
 };
 
 // jQuery Masonry
@@ -27,9 +20,11 @@ $(window).on("load", function(){
         });
     
         $container.infinitescroll({
-            navSelector  : '.post-nav',    // selector for the paged navigation 
+            navSelector  : '.post-nav',// selector for the paged navigation 
             nextSelector : '.post-nav .previous a',  // selector for the NEXT link (to page 2)
             itemSelector : '.box',     // selector for all items you'll retrieve
+            stamp        : '.stamp',   // selector for all stamped items
+            gutter       : 0,
             loading: {
                 finishedMsg: 'No more pages to load.',
                 img: 'http://i.imgur.com/6RMhx.gif'
@@ -198,4 +193,4 @@ $(function(){
     });
 });
 
-})();
+})(window);
