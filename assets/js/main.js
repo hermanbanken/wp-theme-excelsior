@@ -12,7 +12,7 @@ $(window).on("load", function(){
     $container = $('.articles');
     
     // Archive page
-    if ( $container.find("article").size() > 1 )
+    if ($container.find("article").size() > 1 )
     {
         $container.imagesLoaded(function(){
             if(!$container.data( 'masonry' ) && document.body.clientWidth > 480)
@@ -41,7 +41,8 @@ $(window).on("load", function(){
                     $newElems.animate({ opacity: 1 });
                             
                     // Setup if not yet set-up
-                    if(!$container.data( 'masonry' )) 
+                    if(document.body.clientWidth <= 480){}
+                    else if(!$container.data( 'masonry')) 
                         $container.masonry(masonryOptions);
                     else
                         $container.masonry( 'appended', $newElems, true );
@@ -68,7 +69,7 @@ $(window).on("resize", function(e){
     if(document.body.clientWidth <= 480 && $container.data( 'masonry' )){
         $container.masonry( 'destroy' );
     } else if(!$container.data( 'masonry' )) {
-        $container.masonry(masonryOptions);
+        $(window).trigger("load");
     }
 });
 
