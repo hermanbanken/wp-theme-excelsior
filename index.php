@@ -54,6 +54,10 @@
 		</div>
 		<div class="meta shade" style="background-color:#3280E2">
 			<form action="/proms/" method="get" style="margin:0">
+				<input type="hidden" name="utm_campaign" value="tickets-proms" />
+				<input type="hidden" name="utm_source" value="stamp-banner" />
+				<input type="hidden" name="utm_medium" value="referral" />
+				<input type="hidden" name="utm_content" value="stamp-banner" />
 				<input type="submit" value="Ga naar ticket site" style="margin:0">
 			</form>
 		</div>
